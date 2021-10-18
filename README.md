@@ -1,2 +1,2 @@
 # Linux-YAOK
-Yet Another Optimizer Kernel
+Yet Another Optimized Kernel
