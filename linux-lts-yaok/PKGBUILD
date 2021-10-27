@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.10
-_minor=72
+_minor=76
 pkgbase=linux-lts-yaok
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -116,10 +116,10 @@ prepare() {
   scripts/config --enable CONFIG_CONTEXT_TRACKING
   scripts/config --disable CONFIG_CONTEXT_TRACKING_FORCE
 
-  echo "Setting tick rate to 500HZ..."
-  scripts/config --disable CONFIG_HZ_300
-  scripts/config --enable CONFIG_HZ_500
-  scripts/config --set-val CONFIG_HZ 500
+#  echo "Setting tick rate to 500HZ..."
+#  scripts/config --disable CONFIG_HZ_300
+#  scripts/config --enable CONFIG_HZ_500
+#  scripts/config --set-val CONFIG_HZ 500
   echo "Disabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
   echo "Disabling SELinux..."
