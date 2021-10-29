@@ -6,6 +6,8 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 
 # Featury bits & pieces
 - CLANG Optimization with LLVM Thin-LTO
+- Dedicated Kernel for Intel/AMD CPU
+- Dedicated Kernel for Home use and Server use
 - No OC, timer frequency is set at 300HZ base
 - CacULE CPU Scheduler
 - Build with -03
