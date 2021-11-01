@@ -148,10 +148,6 @@ prepare() {
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
-#  echo "Setting tick rate to 500HZ..."
-#  scripts/config --disable CONFIG_HZ_300
-#  scripts/config --enable CONFIG_HZ_500
-#  scripts/config --set-val CONFIG_HZ 500
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
   echo -e "\033[0;31mDisabling SELinux..."
