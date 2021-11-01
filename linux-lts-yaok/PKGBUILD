@@ -168,9 +168,16 @@ prepare() {
   scripts/config --enable CONFIG_FUTEX_PI
   echo -e "\033[0;32mEnable Futex2 support..."
   scripts/config --enable CONFIG_FUTEX2
+  echo -e "\033[0;32mEnable winesync support..."
+  scripts/config --module CONFIG_WINESYNC
+
+  echo -e "\033[0;32mEnabling standard ZSTD compression ratio..."
+  scripts/config --set-val CONFIG_KERNEL_ZSTD_LEVEL 19
+  scripts/config --disable CONFIG_KERNEL_ZSTD_LEVEL_ULTRA
   echo -e "\033[0;32mEnabling standard ZSTD module compression ratio..."
   scripts/config --set-val CONFIG_MODULE_COMPRESS_ZSTD_LEVEL 19
   scripts/config --disable CONFIG_MODULE_COMPRESS_ZSTD_ULTRA
+
   echo -e "\033[0;31mDisabling TCP_CONG_CUBIC..."
   scripts/config --module CONFIG_TCP_CONG_CUBIC
   scripts/config --disable CONFIG_DEFAULT_CUBIC
@@ -212,7 +219,7 @@ prepare() {
 
 build() {
   cd $_srcname
-  make all
+  make -j$(nproc) all
 }
 
 _package() {
