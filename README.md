@@ -5,7 +5,6 @@ Yet Another Optimized Kernel
 Linux Yaok is a kernel with **Stability First** and Performance in mind.
 
 # Featury bits & pieces
-- CLANG Optimization with LLVM Thin-LTO ***(Still with gcc at the moment it while came later on)***
 - Dedicated Kernel for Intel/AMD CPU
 - Dedicated Kernel for Home use and Server use
 - No OC, timer frequency is set at 300HZ base
@@ -14,7 +13,7 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 - PREEMPT enabled by default
 - Xanmod multigenerational LRU
 - BBRv2 tcp_congestion_control
-- FUTEX, WINESYNC & FUTEX2 patch-set
+- FUTEX, FUTEX2, WINESYNC patch-set
 - Latest Paragon NTFS3 driver support
 - Latest & improved ZSTD patch-set
 - Removed some debug and logging options
