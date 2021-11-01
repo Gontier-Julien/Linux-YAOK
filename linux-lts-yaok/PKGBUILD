@@ -148,6 +148,9 @@ prepare() {
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
+  echo -e "\033[0;31mDisabling Open-Channel SSD NVM..." # delete since 5.15
+  scripts/config --disable CONFIG_NVM
+
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
   echo -e "\033[0;31mDisabling SELinux..."
