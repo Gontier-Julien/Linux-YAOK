@@ -5,6 +5,7 @@ Yet Another Optimized Kernel
 Linux Yaok is a kernel with **Stability First** and Performance in mind.
 
 # Featury bits & pieces
+- Build with Clang/LLVM Lto ***(Still in testing for stability)***
 - Dedicated Kernel for Intel/AMD CPU
 - Dedicated Kernel for Home use and Server use
 - Dedicated Kernel for Server with/without Numa **(Multiple socket cpu)**
