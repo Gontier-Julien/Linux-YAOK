@@ -18,6 +18,11 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 - Latest & improved ZSTD patch-set
 - Removed some debug and logging options
 
+# TODO
+
+- [ ] Add builds for Debian
+
+
 # Contributors
 
 Thanks to all those people that have made the kernel possible:
