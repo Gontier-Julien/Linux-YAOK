@@ -1,0 +1,313 @@
+# Maintainer: gontier-julien <gontierjulien68@gmail.com>
+
+_major=5.10
+_minor=70
+pkgbase=linux-lts-server-yaok
+pkgver=${_major}.${_minor}
+pkgrel=1
+pkgdesc='Security-Hardened Linux-lts YAOK, Optimized for Server'
+url='https://github.com/anthraxx/linux-hardened'
+arch=(x86_64 x86_64_v3)
+license=(GPL2)
+makedepends=(bc kmod libelf pahole cpio perl tar xz 
+             xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick)
+options=('!strip')
+_srcname=linux-${_major}
+_srctag=${pkgver}-hardened1
+_patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.10"
+_archpatch="https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/linux-lts/trunk"
+_xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.10.y-xanmod"
+source=(
+  "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_major}.tar.xz"
+  "https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+  "https://github.com/anthraxx/linux-hardened/releases/download/${_srctag}/linux-hardened-${_srctag}.patch"
+  "https://raw.githubusercontent.com/hamadmarri/cacule-cpu-scheduler/master/patches/CacULE/v5.10/cacule-5.10.patch"
+  #"${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
+  #"${_archpatch}/0002-gcc-plugins-modern-gcc-plugin-infrastructure-requres.patch"
+  "${_xanpatch}/xanmod/0005-kconfig-set-PREEMPT-and-RCU_BOOST-without-delay-by-d.patch"
+  "${_xanpatch}/xanmod/0006-dcache-cache_pressure-50-decreases-the-rate-at-which.patch"
+  "${_xanpatch}/xanmod/0010-scripts-disable-the-localversion-tag-of-a-git-repo.patch"
+  "${_xanpatch}/xanmod/0014-XANMOD-Makefile-Turn-off-loop-vectorization-for-GCC-.patch"
+  "${_xanpatch}/lrng/0001-drivers-Introduce-the-Linux-Random-Number-Generator.patch"
+  "${_xanpatch}/lrng/0002-char-lrng-allocate-one-DRNG-instance-per-NUMA-node.patch"
+  "${_xanpatch}/lrng/0003-char-lrng-sysctls-and-proc-interface.patch"
+  "${_xanpatch}/lrng/0004-char-lrng-add-switchable-DRNG-support.patch"
+  "${_xanpatch}/lrng/0005-char-lrng-add-common-generic-hash-support.patch"
+  "${_xanpatch}/lrng/0006-crypto-DRBG-externalize-DRBG-functions-for-LRNG.patch"
+  "${_xanpatch}/lrng/0007-char-lrng-add-SP800-90A-DRBG-extension.patch"
+  "${_xanpatch}/lrng/0008-char-lrng-add-kernel-crypto-API-PRNG-extension.patch"
+  "${_xanpatch}/lrng/0009-crypto-move-Jitter-RNG-header-include-dir.patch"
+  "${_xanpatch}/lrng/0010-char-lrng-add-Jitter-RNG-fast-noise-source.patch"
+  "${_xanpatch}/lrng/0011-char-lrng-add-SP800-90B-compliant-health-tests.patch"
+  "${_xanpatch}/lrng/0012-char-lrng-add-interface-for-gathering-of-raw-entropy.patch"
+  "${_xanpatch}/lrng/0013-char-lrng-add-power-on-and-runtime-self-tests.patch"
+  "${_patchsource}/bbr2-patches-v3/0001-bbr2-5.10-introduce-BBRv2.patch"
+  "${_patchsource}/ll-patches/0003-sched-core-nr_migrate-256-increases-number-of-tasks-.patch"
+  "${_patchsource}/ll-patches/0004-mm-set-8-megabytes-for-address_space-level-file-read.patch"
+  "${_patchsource}/lqx-patches-v4-sep/0002-zen-Allow-MSR-writes-by-default.patch"
+  "${_patchsource}/fixes-miscellaneous-v11-sep/0003-kbuild-add-fcf-protection-none-to-retpoline-flags.patch"
+  "${_patchsource}/fixes-miscellaneous-v11-sep/0004-mm-Disable-watermark-boosting-by-default.patch"
+  "${_patchsource}/fixes-miscellaneous-v11-sep/0005-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
+  "${_patchsource}/fixes-miscellaneous-v11-sep/0006-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
+  "${_patchsource}/fixes-miscellaneous-v11-sep/0008-kbuild-Disable-stack-conservation-for-GCC.patch"
+  "${_patchsource}/fixes-miscellaneous-v11-sep/0012-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
+  "${_patchsource}/block-patches-v3-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
+  "${_patchsource}/zstd-patches-v3/0001-init-add-support-for-zstd-compressed-modules.patch"
+  "${_patchsource}/zstd-upstream-patches/0001-zstd-upstream-patches.patch"
+  #"${_patchsource}/uksm-patches/0001-UKSM-for-5.10.patch"
+  "config"         # the main kernel config file
+)
+sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #Linux 5.10
+            'SKIP' #Linux 5.10.x patch
+            'b934850657f9385ce49e8d599df9a7b8e267def43b1a64ef61c70d7bf6e9268b' # Linux hardened
+            '3d4a0602425000d18162fdd45c6f13dd1c5ef78ef3b5b7f19365a8b0cf030c3a' # CacULE patch
+            #'96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch zen
+            #'bb935ad2467637966185b88d18a3f9be2f37d3acdc71ed361eae326ca898d6fc' # arch patch gcc
+            'e2140e7d2769bd742d8f49e3d979e10071bef73daa635df7802dbc15f277c2aa' # Xanmod patch 1
+            'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 2
+            '57274cbc9065176dc86ba1265de53ab9738a47e035b0dd6e22c8e9a31eb1340b' # Xanmod patch 3
+            '628d71912ea809e29257a0e8985ebc92688ec6acb66c803d549c62f586b49903' # Xanmod patch 4
+            '9efbc3ee425abcf49411000caac4f082821cc634a0a1a3fa55ffc1e701fbffec' # LRU patch 1
+            '939a163aa8b6d5c81d5dfbc4472b5fa2327cbc4abf1334147ee09de272b4264a' # LRU patch 2
+            '35335141fe63bc6c0272047294d0edda1815ef0bb450bc33fa03fae56ebb42ba' # LRU patch 3
+            '5c6ea95ac422e3692c89b09a03cd78691b8201a0208ad2e1084d2ce5ad4f13c1' # LRU patch 4
+            '0dd1078c01a0ac24aad164af93947049930c49cbac99e84a6cd0697ae33561ab' # LRU patch 5
+            'd12ad0b98b0cb7161c8907965207dc171201a60e9b52541bac584ffe7b4f6d41' # LRU patch 6
+            '7b46ee39312bde38000cb2fa6e0d7dbe91ce226de0d93736993ef0cafa09158b' # LRU patch 7
+            '743d643620d1fd983a32b91287abfcc28eb71c212ac1a1a49255ef1a5ff9b6c7' # LRU patch 8
+            'b5a6f968d8520646754dab72bd441007f8786d028be201162efbe3b23c742c26' # LRU patch 9
+            '47920b04065d6450a94b18c8286e2c37000b1d7f140ef4ec07959639175842e4' # LRU patch 10
+            'b7830fd44e48f85aa7914a4e031ecca32e48e0164375c229443212678a7048aa' # LRU patch 11
+            '1dfee5e94f312320f87c6d57e1ee2b1d90fdf8fbb556840ee553323700d63860' # LRU patch 12
+            '3122d04acd08266251e7f9aa1093572483dc05cdb8d97ec3a8aaa0231a16f7e8' # LRU patch 13
+            '167d1732e57601dece7eec95d22bcbc43b1b2815fd73182933c1757abe7189b7' # BBR2 patch
+            '331dd459a21a4afd65e2c59848666b9dd420f87f4ad01ec3012b47f3acc992ef' # ll-patch 1
+            '77ff83080ce0b83c81bc085a0e276b08db572aed725dacc5a1b804c9d0f36733' # ll-patch 2
+            '4fca3c8fd9e30b161b1700614b4a2c96346706dabfb3c5e290e892482ba00cd0' # lqx patch for MSR
+            '451733f8a794356769a9359f0171d9378bb8129edc8892385fee016da73bb3da' # Fixes patch 1
+            '6a92eb2a9a8b480b0b412563c301e2343022b42db1ddd8fd2d6b4ed6a7424c06' # Fixes patch 2
+            '0740cfe84aba7776823f4d804384266391edec05672fafd456b42486362d5666' # Fixes patch 3
+            'da18f29b70ef25114b09a92107d1ea22d3485578a75b08afa896dbee6a0e8276' # Fixes patch 4
+            '98970e9eb43d1b5b0fc6486834ff9c418e7821fe0487f23acdcb7bf13a1460bb' # Fixes patch 5
+            'e0a7d59c339dc4ac9aa98a1e192d6f6bf2d8c12e67838dbacc13aeab72799edf' # Fixes patch 6
+            'fb8328b049abe6d15def1221de8177ebcb7492b596c361c52230f4cc7ca3bfd7' # multithreading I/O patch
+            '2ba659db7ecf3f8349dfd65012c0aa156fedee2877a0f8c6d95c76fdb19b3583' # Zstd patch
+            '137811c7d916c608f9ebb7e4d82ec93ea7592d99fe6394cf908c0e12e9881a7d' # Upstream Zstd patch
+            #'9f7931fe587cfbc918aabbf3a1211a7179c8b2b300a1fc38c22920df4ed7dc2a' # Uksm patch
+            'SKIP') #config
+
+export KBUILD_BUILD_HOST=archlinux
+export KBUILD_BUILD_USER=$pkgbase
+export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
+
+prepare() {
+  cd $_srcname
+
+  ### Add upstream patches
+  echo "Add upstream patches"
+  patch -Np1 -i ../patch-${pkgver}
+
+  echo "Setting version..."
+  scripts/setlocalversion --save-scmversion
+  echo "-$pkgrel" > localversion.10-pkgrel
+  echo "${pkgbase#linux}" > localversion.20-pkgname
+
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    [[ $src = *.patch ]] || continue
+    echo "Applying patch $src..."
+    patch -Np1 < "../$src"
+  done
+
+  echo "Setting config..."
+  cp ../config .config
+#  make prepare
+  make olddefconfig
+
+  make -s kernelrelease > version
+  echo "Prepared $pkgbase version $(<version)"
+
+  # CONFIG_STACK_VALIDATION gives better stack traces. Also is enabled in all official kernel packages by Archlinux team
+  scripts/config --enable CONFIG_STACK_VALIDATION
+
+  echo -e "\033[0;32mEnabling CacULE Scheduler..."
+  scripts/config --enable CONFIG_CACULE_SCHED
+  scripts/config --disable CONFIG_CACULE_RDB
+  scripts/config --enable CONFIG_FAIR_GROUP_SCHED
+  scripts/config --enable CONFIG_SCHED_AUTOGROUP
+  scripts/config --enable CONFIG_CONTEXT_TRACKING
+  scripts/config --disable CONFIG_CONTEXT_TRACKING_FORCE
+  echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
+  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
+  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
+
+  echo -e "\033[0;31mDisabling Open-Channel SSD NVM..." # delete since 5.15
+  scripts/config --disable CONFIG_NVM
+
+  echo -e "\033[0;31mDisabling NUMA by default..."
+  scripts/config --disable CONFIG_NUMA
+  echo -e "\033[0;31mDisabling TCP_CONG_CUBIC..."
+  scripts/config --module CONFIG_TCP_CONG_CUBIC
+  scripts/config --disable CONFIG_DEFAULT_CUBIC
+  echo -e "\033[0;31mDisabling TCP_CONG_RENO..."
+  scripts/config --module CONFIG_TCP_CONG_RENO
+  scripts/config --disable CONFIG_DEFAULT_RENO
+  echo -e "\033[0;32mEnabling TCP_CONG_BBR2..."
+  scripts/config --enable CONFIG_TCP_CONG_BBR2
+  scripts/config --enable CONFIG_DEFAULT_BBR2
+  scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr2
+  echo -e "\033[0;32mSetting performance governor..."
+  scripts/config --disable CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL
+  scripts/config --enable CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+  echo -e "\033[0;31mDisabling uneeded governors..."
+  scripts/config --disable CONFIG_CPU_FREQ_GOV_ONDEMAND
+  scripts/config --disable CONFIG_CPU_FREQ_GOV_CONSERVATIVE
+  scripts/config --disable CONFIG_CPU_FREQ_GOV_USERSPACE
+  scripts/config --disable CONFIG_CPU_FREQ_GOV_SCHEDUTIL
+
+  echo -e "\033[0;32mEnabling standard ZSTD compression ratio..."
+  scripts/config --set-val CONFIG_KERNEL_ZSTD_LEVEL 19
+  scripts/config --disable CONFIG_KERNEL_ZSTD_LEVEL_ULTRA
+  echo -e "\033[0;32mEnabling standard ZSTD module compression ratio..."
+  scripts/config --set-val CONFIG_MODULE_COMPRESS_ZSTD_LEVEL 19
+  scripts/config --disable CONFIG_MODULE_COMPRESS_ZSTD_ULTRA
+
+#  echo -e "\033[0;32mEnable PREEMPT..."        Not for server use
+#  scripts/config --disable CONFIG_PREEMPT_NONE
+#  scripts/config --disable CONFIG_PREEMPT_VOLUNTARY
+#  scripts/config --enable CONFIG_PREEMPT
+#  scripts/config --enable CONFIG_PREEMPT_COUNT
+#  scripts/config --enable CONFIG_PREEMPTION
+#  scripts/config --enable CONFIG_PREEMPT_DYNAMIC
+
+  echo -e "\033[0;32mEnabling multigenerational LRU..."
+  scripts/config --enable CONFIG_HAVE_ARCH_PARENT_PMD_YOUNG
+  scripts/config --enable CONFIG_LRU_GEN
+  scripts/config --set-val CONFIG_NR_LRU_GENS 7
+  scripts/config --set-val CONFIG_TIERS_PER_GEN 4
+  scripts/config --enable CONFIG_LRU_GEN_ENABLED
+  scripts/config --disable CONFIG_LRU_GEN_STATS
+
+  echo -e "\033[0;31mDisabling some additional debuging..."
+  scripts/config --disable CONFIG_DEBUG_BUGVERBOSE
+}
+
+build() {
+  cd $_srcname
+  make -j$(nproc) all
+}
+
+_package() {
+  pkgdesc="The $pkgdesc kernel and modules"
+  depends=(coreutils kmod initramfs)
+  optdepends=('crda: to set the correct wireless channels of your country'
+              'linux-firmware: firmware images needed for some devices'
+              'usbctl: deny_new_usb control')
+  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+
+  cd $_srcname
+  local kernver="$(<version)"
+  local modulesdir="$pkgdir/usr/lib/modules/$kernver"
+
+  echo "Installing boot image..."
+  # systemd expects to find the kernel here to allow hibernation
+  # https://github.com/systemd/systemd/commit/edda44605f06a41fb86b7ab8128dcf99161d2344
+  install -Dm644 "$(make -s image_name)" "$modulesdir/vmlinuz"
+
+  # Used by mkinitcpio to name the kernel
+  echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
+
+  echo "Installing modules..."
+  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+
+  # remove build and source links
+  rm "$modulesdir"/{source,build}
+}
+
+_package-headers() {
+  pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
+
+  cd $_srcname
+  local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
+
+  echo "Installing build files..."
+  install -Dt "$builddir" -m644 .config Makefile Module.symvers System.map \
+    localversion.* version vmlinux
+  install -Dt "$builddir/kernel" -m644 kernel/Makefile
+  install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
+  cp -t "$builddir" -a scripts
+
+  # add objtool for external module building and enabled VALIDATION_STACK option
+  install -Dt "$builddir/tools/objtool" tools/objtool/objtool
+
+  # add xfs and shmem for aufs building
+  mkdir -p "$builddir"/{fs/xfs,mm}
+
+  echo "Installing headers..."
+  cp -t "$builddir" -a include
+  cp -t "$builddir/arch/x86" -a arch/x86/include
+  install -Dt "$builddir/arch/x86/kernel" -m644 arch/x86/kernel/asm-offsets.s
+
+  install -Dt "$builddir/drivers/md" -m644 drivers/md/*.h
+  install -Dt "$builddir/net/mac80211" -m644 net/mac80211/*.h
+
+  # http://bugs.archlinux.org/task/13146
+  install -Dt "$builddir/drivers/media/i2c" -m644 drivers/media/i2c/msp3400-driver.h
+
+  # http://bugs.archlinux.org/task/20402
+  install -Dt "$builddir/drivers/media/usb/dvb-usb" -m644 drivers/media/usb/dvb-usb/*.h
+  install -Dt "$builddir/drivers/media/dvb-frontends" -m644 drivers/media/dvb-frontends/*.h
+  install -Dt "$builddir/drivers/media/tuners" -m644 drivers/media/tuners/*.h
+
+  echo "Installing KConfig files..."
+  find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
+
+  echo "Removing unneeded architectures..."
+  local arch
+  for arch in "$builddir"/arch/*/; do
+    [[ $arch = */x86/ ]] && continue
+    echo "Removing $(basename "$arch")"
+    rm -r "$arch"
+  done
+
+  echo "Removing documentation..."
+  rm -r "$builddir/Documentation"
+
+  echo "Removing broken symlinks..."
+  find -L "$builddir" -type l -printf 'Removing %P\n' -delete
+
+  echo "Removing loose objects..."
+  find "$builddir" -type f -name '*.o' -printf 'Removing %P\n' -delete
+
+  echo "Stripping build tools..."
+  local file
+  while read -rd '' file; do
+    case "$(file -bi "$file")" in
+      application/x-sharedlib\;*)      # Libraries (.so)
+        strip -v $STRIP_SHARED "$file" ;;
+      application/x-archive\;*)        # Libraries (.a)
+        strip -v $STRIP_STATIC "$file" ;;
+      application/x-executable\;*)     # Binaries
+        strip -v $STRIP_BINARIES "$file" ;;
+      application/x-pie-executable\;*) # Relocatable binaries
+        strip -v $STRIP_SHARED "$file" ;;
+    esac
+  done < <(find "$builddir" -type f -perm -u+x ! -name vmlinux -print0)
+
+  echo "Stripping vmlinux..."
+  strip -v $STRIP_STATIC "$builddir/vmlinux"
+
+  echo "Adding symlink..."
+  mkdir -p "$pkgdir/usr/src"
+  ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
+}
+
+pkgname=("$pkgbase" "$pkgbase-headers" )
+for _p in "${pkgname[@]}"; do
+  eval "package_$_p() {
+    $(declare -f "_package${_p#$pkgbase}")
+    _package${_p#$pkgbase}
+  }"
+done
