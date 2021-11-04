@@ -69,19 +69,19 @@ sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #
             'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 2
             '57274cbc9065176dc86ba1265de53ab9738a47e035b0dd6e22c8e9a31eb1340b' # Xanmod patch 3
             '628d71912ea809e29257a0e8985ebc92688ec6acb66c803d549c62f586b49903' # Xanmod patch 4
-            '9efbc3ee425abcf49411000caac4f082821cc634a0a1a3fa55ffc1e701fbffec' #LRU patch 1
-            '939a163aa8b6d5c81d5dfbc4472b5fa2327cbc4abf1334147ee09de272b4264a' #LRU patch 2
-            '35335141fe63bc6c0272047294d0edda1815ef0bb450bc33fa03fae56ebb42ba' #LRU patch 3
-            '5c6ea95ac422e3692c89b09a03cd78691b8201a0208ad2e1084d2ce5ad4f13c1' #LRU patch 4
-            '0dd1078c01a0ac24aad164af93947049930c49cbac99e84a6cd0697ae33561ab' #LRU patch 5
-            'd12ad0b98b0cb7161c8907965207dc171201a60e9b52541bac584ffe7b4f6d41' #LRU patch 6
-            '7b46ee39312bde38000cb2fa6e0d7dbe91ce226de0d93736993ef0cafa09158b' #LRU patch 7
-            '743d643620d1fd983a32b91287abfcc28eb71c212ac1a1a49255ef1a5ff9b6c7' #LRU patch 8
-            'b5a6f968d8520646754dab72bd441007f8786d028be201162efbe3b23c742c26' #LRU patch 9
-            '47920b04065d6450a94b18c8286e2c37000b1d7f140ef4ec07959639175842e4' #LRU patch 10
-            'b7830fd44e48f85aa7914a4e031ecca32e48e0164375c229443212678a7048aa' #LRU patch 11
-            '1dfee5e94f312320f87c6d57e1ee2b1d90fdf8fbb556840ee553323700d63860' #LRU patch 12
-            '3122d04acd08266251e7f9aa1093572483dc05cdb8d97ec3a8aaa0231a16f7e8' #LRU patch 13
+            '9efbc3ee425abcf49411000caac4f082821cc634a0a1a3fa55ffc1e701fbffec' # LRU patch 1
+            '939a163aa8b6d5c81d5dfbc4472b5fa2327cbc4abf1334147ee09de272b4264a' # LRU patch 2
+            '35335141fe63bc6c0272047294d0edda1815ef0bb450bc33fa03fae56ebb42ba' # LRU patch 3
+            '5c6ea95ac422e3692c89b09a03cd78691b8201a0208ad2e1084d2ce5ad4f13c1' # LRU patch 4
+            '0dd1078c01a0ac24aad164af93947049930c49cbac99e84a6cd0697ae33561ab' # LRU patch 5
+            'd12ad0b98b0cb7161c8907965207dc171201a60e9b52541bac584ffe7b4f6d41' # LRU patch 6
+            '7b46ee39312bde38000cb2fa6e0d7dbe91ce226de0d93736993ef0cafa09158b' # LRU patch 7
+            '743d643620d1fd983a32b91287abfcc28eb71c212ac1a1a49255ef1a5ff9b6c7' # LRU patch 8
+            'b5a6f968d8520646754dab72bd441007f8786d028be201162efbe3b23c742c26' # LRU patch 9
+            '47920b04065d6450a94b18c8286e2c37000b1d7f140ef4ec07959639175842e4' # LRU patch 10
+            'b7830fd44e48f85aa7914a4e031ecca32e48e0164375c229443212678a7048aa' # LRU patch 11
+            '1dfee5e94f312320f87c6d57e1ee2b1d90fdf8fbb556840ee553323700d63860' # LRU patch 12
+            '3122d04acd08266251e7f9aa1093572483dc05cdb8d97ec3a8aaa0231a16f7e8' # LRU patch 13
             '167d1732e57601dece7eec95d22bcbc43b1b2815fd73182933c1757abe7189b7' # BBR2 patch
             '331dd459a21a4afd65e2c59848666b9dd420f87f4ad01ec3012b47f3acc992ef' # ll-patch 1
             '77ff83080ce0b83c81bc085a0e276b08db572aed725dacc5a1b804c9d0f36733' # ll-patch 2
