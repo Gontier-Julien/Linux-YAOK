@@ -18,6 +18,7 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 - FUTEX, FUTEX2, WINESYNC patch-set
 - Latest Paragon NTFS3 driver support
 - Latest & improved ZSTD patch-set
+- Follow some Upstream Kernel changes
 - Removed some debug and logging options
 
 # TODO

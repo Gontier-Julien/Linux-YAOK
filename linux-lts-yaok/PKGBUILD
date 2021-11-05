@@ -151,6 +151,9 @@ prepare() {
   echo -e "\033[0;31mDisabling Open-Channel SSD NVM..." # delete since 5.15
   scripts/config --disable CONFIG_NVM
 
+  echo -e "\033[0;31mDisabling SECCOMP..." # changed since 5.16 (https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
+  scripts/config --disable CONFIG_SECCOMP
+
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
   echo -e "\033[0;31mDisabling SELinux..."
