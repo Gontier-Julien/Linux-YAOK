@@ -54,7 +54,6 @@ source=(
   "${_patchsource}/block-patches-v3-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
   "${_patchsource}/zstd-patches-v3/0001-init-add-support-for-zstd-compressed-modules.patch"
   "${_patchsource}/zstd-upstream-patches/0001-zstd-upstream-patches.patch"
-  #"${_patchsource}/uksm-patches/0001-UKSM-for-5.10.patch"
   "config"         # the main kernel config file
 )
 sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #Linux 5.10
@@ -93,7 +92,6 @@ sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #
             'fb8328b049abe6d15def1221de8177ebcb7492b596c361c52230f4cc7ca3bfd7' # multithreading I/O patch
             '2ba659db7ecf3f8349dfd65012c0aa156fedee2877a0f8c6d95c76fdb19b3583' # Zstd patch
             '137811c7d916c608f9ebb7e4d82ec93ea7592d99fe6394cf908c0e12e9881a7d' # Upstream Zstd patch
-            #'9f7931fe587cfbc918aabbf3a1211a7179c8b2b300a1fc38c22920df4ed7dc2a' # Uksm patch
             'SKIP') #config
 
 export KBUILD_BUILD_HOST=archlinux

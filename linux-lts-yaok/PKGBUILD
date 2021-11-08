@@ -52,7 +52,6 @@ source=(
   "${_patchsource}/block-patches-v3-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
   "${_patchsource}/zstd-patches-v3/0001-init-add-support-for-zstd-compressed-modules.patch"
   "${_patchsource}/zstd-upstream-patches/0001-zstd-upstream-patches.patch"
-  "${_patchsource}/uksm-patches/0001-UKSM-for-5.10.patch"
   "${_patchsource}/ntfs3-patches-v7/0001-ntfs3-patches.patch"
   "${_patchsource}/futex-trunk-patches-v2/0001-futex-resync-from-gitlab.collabora.com.patch"
   "${_patchsource}/futex2-trunk-patches-v3/0001-futex2-resync-from-gitlab.collabora.com.patch"
@@ -94,7 +93,6 @@ sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #
             'fb8328b049abe6d15def1221de8177ebcb7492b596c361c52230f4cc7ca3bfd7' # Multithreading I/O patch
             '2ba659db7ecf3f8349dfd65012c0aa156fedee2877a0f8c6d95c76fdb19b3583' # Zstd patch
             '137811c7d916c608f9ebb7e4d82ec93ea7592d99fe6394cf908c0e12e9881a7d' # Upstream Zstd patch
-            '9f7931fe587cfbc918aabbf3a1211a7179c8b2b300a1fc38c22920df4ed7dc2a' # Uksm patch
             '5e5276141e525d01ec23f3299584aad9bdb8462cb1101834df6160cb153bcf7f' # ntfs3 patch
             '239307e0018ab2405b9afaa7d315ee3352b83819a3c75b65951749b52a3247d2' # Futex patch
             '5822e657656278e3bd223f0036e35b4b3d04785874473b60955a03a3c46d757b' # Futex2 patch
