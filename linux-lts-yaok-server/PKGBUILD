@@ -1,12 +1,12 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.10
-_minor=70
+_minor=80
 pkgbase=linux-lts-server-yaok
 pkgver=${_major}.${_minor}
 pkgrel=1
 pkgdesc='Security-Hardened Linux-lts YAOK, Optimized for Server'
-url='https://github.com/anthraxx/linux-hardened'
+url='https://gitlab.com/alfredchen/linux-prjc'
 arch=(x86_64 x86_64_v3)
 license=(GPL2)
 makedepends=(bc kmod libelf pahole cpio perl tar xz 
@@ -20,27 +20,30 @@ _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_major}.tar.xz"
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
-  "https://github.com/anthraxx/linux-hardened/releases/download/${_srctag}/linux-hardened-${_srctag}.patch"
-  "https://raw.githubusercontent.com/hamadmarri/cacule-cpu-scheduler/master/patches/CacULE/v5.10/cacule-5.10.patch"
-  #"${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
-  #"${_archpatch}/0002-gcc-plugins-modern-gcc-plugin-infrastructure-requres.patch"
+  "https://gitlab.com/alfredchen/projectc/-/raw/master/5.10-lts/prjc_v5.10-lts-r3.patch"
+  "https://gitlab.com/alfredchen/linux-prjc/uploads/eab8442acae2744f531fda205d8c8c53/prjc-20211115-update-sched_post_fork__-signature.patch" # backport temporary fix
+  "https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15/spectre-patches/0001-spectre-patches.patch" # backport
+  "${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
+  "${_archpatch}/0002-gcc-plugins-modern-gcc-plugin-infrastructure-requres.patch"
   "${_xanpatch}/xanmod/0005-kconfig-set-PREEMPT-and-RCU_BOOST-without-delay-by-d.patch"
   "${_xanpatch}/xanmod/0006-dcache-cache_pressure-50-decreases-the-rate-at-which.patch"
   "${_xanpatch}/xanmod/0010-scripts-disable-the-localversion-tag-of-a-git-repo.patch"
   "${_xanpatch}/xanmod/0014-XANMOD-Makefile-Turn-off-loop-vectorization-for-GCC-.patch"
-  "${_xanpatch}/lrng/0001-drivers-Introduce-the-Linux-Random-Number-Generator.patch"
-  "${_xanpatch}/lrng/0002-char-lrng-allocate-one-DRNG-instance-per-NUMA-node.patch"
+  "${_xanpatch}/lrng/0001-drivers-char-Introduce-the-Linux-Random-Number-Gener.patch"
+  "${_xanpatch}/lrng/0002-char-lrng-IRQ-entropy-source.patch"
   "${_xanpatch}/lrng/0003-char-lrng-sysctls-and-proc-interface.patch"
-  "${_xanpatch}/lrng/0004-char-lrng-add-switchable-DRNG-support.patch"
-  "${_xanpatch}/lrng/0005-char-lrng-add-common-generic-hash-support.patch"
-  "${_xanpatch}/lrng/0006-crypto-DRBG-externalize-DRBG-functions-for-LRNG.patch"
-  "${_xanpatch}/lrng/0007-char-lrng-add-SP800-90A-DRBG-extension.patch"
-  "${_xanpatch}/lrng/0008-char-lrng-add-kernel-crypto-API-PRNG-extension.patch"
-  "${_xanpatch}/lrng/0009-crypto-move-Jitter-RNG-header-include-dir.patch"
-  "${_xanpatch}/lrng/0010-char-lrng-add-Jitter-RNG-fast-noise-source.patch"
-  "${_xanpatch}/lrng/0011-char-lrng-add-SP800-90B-compliant-health-tests.patch"
-  "${_xanpatch}/lrng/0012-char-lrng-add-interface-for-gathering-of-raw-entropy.patch"
-  "${_xanpatch}/lrng/0013-char-lrng-add-power-on-and-runtime-self-tests.patch"
+  "${_xanpatch}/lrng/0004-char-lrng-allocate-one-DRNG-instance-per-NUMA-node.patch"
+  "${_xanpatch}/lrng/0005-char-lrng-CPU-entropy-source.patch"
+  "${_xanpatch}/lrng/0006-char-lrng-add-switchable-DRNG-support.patch"
+  "${_xanpatch}/lrng/0007-char-lrng-add-common-generic-hash-support.patch"
+  "${_xanpatch}/lrng/0008-crypto-drbg-externalize-DRBG-functions-for-LRNG.patch"
+  "${_xanpatch}/lrng/0009-char-lrng-add-SP800-90A-DRBG-extension.patch"
+  "${_xanpatch}/lrng/0010-char-lrng-add-kernel-crypto-API-PRNG-extension.patch"
+  "${_xanpatch}/lrng/0011-crypto-move-Jitter-RNG-header-include-dir.patch"
+  "${_xanpatch}/lrng/0012-char-lrng-add-Jitter-RNG-fast-noise-source.patch"
+  "${_xanpatch}/lrng/0013-char-lrng-add-SP800-90B-compliant-health-tests.patch"
+  "${_xanpatch}/lrng/0014-char-lrng-add-interface-for-gathering-of-raw-entropy.patch"
+  "${_xanpatch}/lrng/0015-char-lrng-add-power-on-and-runtime-self-tests.patch"
   "${_patchsource}/bbr2-patches-v3/0001-bbr2-5.10-introduce-BBRv2.patch"
   "${_patchsource}/ll-patches/0003-sched-core-nr_migrate-256-increases-number-of-tasks-.patch"
   "${_patchsource}/ll-patches/0004-mm-set-8-megabytes-for-address_space-level-file-read.patch"
@@ -58,27 +61,30 @@ source=(
 )
 sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #Linux 5.10
             'SKIP' #Linux 5.10.x patch
-            'b934850657f9385ce49e8d599df9a7b8e267def43b1a64ef61c70d7bf6e9268b' # Linux hardened
-            '3d4a0602425000d18162fdd45c6f13dd1c5ef78ef3b5b7f19365a8b0cf030c3a' # CacULE patch
-            #'96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch zen
-            #'bb935ad2467637966185b88d18a3f9be2f37d3acdc71ed361eae326ca898d6fc' # arch patch gcc
+            'f4562c31658d7e18dbbfc3220bc5350fc896e6d338714420533a3df8642778d1' # BMQ patch
+            '6fdc2a8e55676c87040beb2c13ed6da5dc45984e1e02d1541a785075a98985ef' # backport temporary fix
+            '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
+            '96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch zen
+            'bb935ad2467637966185b88d18a3f9be2f37d3acdc71ed361eae326ca898d6fc' # arch patch gcc
             'e2140e7d2769bd742d8f49e3d979e10071bef73daa635df7802dbc15f277c2aa' # Xanmod patch 1
             'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 2
             '57274cbc9065176dc86ba1265de53ab9738a47e035b0dd6e22c8e9a31eb1340b' # Xanmod patch 3
             '628d71912ea809e29257a0e8985ebc92688ec6acb66c803d549c62f586b49903' # Xanmod patch 4
-            '9efbc3ee425abcf49411000caac4f082821cc634a0a1a3fa55ffc1e701fbffec' # LRU patch 1
-            '939a163aa8b6d5c81d5dfbc4472b5fa2327cbc4abf1334147ee09de272b4264a' # LRU patch 2
-            '35335141fe63bc6c0272047294d0edda1815ef0bb450bc33fa03fae56ebb42ba' # LRU patch 3
-            '5c6ea95ac422e3692c89b09a03cd78691b8201a0208ad2e1084d2ce5ad4f13c1' # LRU patch 4
-            '0dd1078c01a0ac24aad164af93947049930c49cbac99e84a6cd0697ae33561ab' # LRU patch 5
-            'd12ad0b98b0cb7161c8907965207dc171201a60e9b52541bac584ffe7b4f6d41' # LRU patch 6
-            '7b46ee39312bde38000cb2fa6e0d7dbe91ce226de0d93736993ef0cafa09158b' # LRU patch 7
-            '743d643620d1fd983a32b91287abfcc28eb71c212ac1a1a49255ef1a5ff9b6c7' # LRU patch 8
-            'b5a6f968d8520646754dab72bd441007f8786d028be201162efbe3b23c742c26' # LRU patch 9
-            '47920b04065d6450a94b18c8286e2c37000b1d7f140ef4ec07959639175842e4' # LRU patch 10
-            'b7830fd44e48f85aa7914a4e031ecca32e48e0164375c229443212678a7048aa' # LRU patch 11
-            '1dfee5e94f312320f87c6d57e1ee2b1d90fdf8fbb556840ee553323700d63860' # LRU patch 12
-            '3122d04acd08266251e7f9aa1093572483dc05cdb8d97ec3a8aaa0231a16f7e8' # LRU patch 13
+            'db3a44f4d86a3b10acd203832218f5f5b0948164d3504ecb0350d47795c3f2f2' # Lrng patch 1
+            '60d2bf8a50c767982e3919fafa8108b40314e34051d164b7b6c87a5ee0816d72' # Lrng patch 2
+            '3da70739f666f388783a4ac1787deb9dbae425e3bf91788667c256ccbeb56f72' # Lrng patch 3
+            '1194561ac4c54ef6a2010c559ad02e8eeffa7ed6182d11db15d790e0211afd8b' # Lrng patch 4
+            '42f7002632459f12bd92e0dc593ca56fadd0490a6a83723a552fd8ecec46551e' # Lrng patch 5
+            '2cd5c8005b45f689b9d562266d584ce461ff16c41a5c8aaa93818260467fdd9a' # Lrng patch 6
+            '134d553062bd0d1c4c00a277f87d7dc91a1f8f14696467e54df4a3452c086596' # Lrng patch 7
+            'fb892565669ef1de0e5c3f8094cbc83a72d89f98b34cf1845c59bf5347c1e698' # Lrng patch 8
+            '18f389bd1faf8769495587378aba07fcf28f165403450bafeb6d477bb67dbb83' # Lrng patch 9
+            'b8f69003d6de49f97bda73ea8c5fa11ba755ac357d0de60d2abd06be4189de4a' # Lrng patch 10
+            '6d9e650ad06952da808f16be63b290e9fa841e1fab419f343c645f3c73499361' # Lrng patch 11
+            '35fb5ea1b884c0dbb17d68d3e2d4f51711407f9f797a6554a008ac60486e4ddb' # Lrng patch 12
+            '2c91cd20a129bd1c6d43516ab531505e65f6d34848590194026be8f349ae5177' # Lrng patch 13
+            '189f49a4e454b1b2ce4ee4baa30eecf643596b1b64fd807eb79f3bc0938665d4' # Lrng patch 14
+            '690de39a89f562b3dcf01b4dc8b64faa9855656c0c765a7d2e5946178fb1e1f9' # Lrng patch 15
             '167d1732e57601dece7eec95d22bcbc43b1b2815fd73182933c1757abe7189b7' # BBR2 patch
             '331dd459a21a4afd65e2c59848666b9dd420f87f4ad01ec3012b47f3acc992ef' # ll-patch 1
             '77ff83080ce0b83c81bc085a0e276b08db572aed725dacc5a1b804c9d0f36733' # ll-patch 2
@@ -93,6 +99,11 @@ sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #
             '2ba659db7ecf3f8349dfd65012c0aa156fedee2877a0f8c6d95c76fdb19b3583' # Zstd patch
             '137811c7d916c608f9ebb7e4d82ec93ea7592d99fe6394cf908c0e12e9881a7d' # Upstream Zstd patch
             'SKIP') #config
+
+BUILD_FLAGS=(
+  LLVM=1
+  LLVM_IAS=1
+)
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -122,7 +133,7 @@ prepare() {
   echo "Setting config..."
   cp ../config .config
 #  make prepare
-  make olddefconfig
+  make ${BUILD_FLAGS[*]} olddefconfig
 
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
@@ -130,22 +141,37 @@ prepare() {
   # CONFIG_STACK_VALIDATION gives better stack traces. Also is enabled in all official kernel packages by Archlinux team
   scripts/config --enable CONFIG_STACK_VALIDATION
 
-  echo -e "\033[0;32mEnabling CacULE Scheduler..."
-  scripts/config --enable CONFIG_CACULE_SCHED
-  scripts/config --disable CONFIG_CACULE_RDB
-  scripts/config --enable CONFIG_FAIR_GROUP_SCHED
-  scripts/config --enable CONFIG_SCHED_AUTOGROUP
-  scripts/config --enable CONFIG_CONTEXT_TRACKING
-  scripts/config --disable CONFIG_CONTEXT_TRACKING_FORCE
+  echo -e "\033[0;32mEnabling BMQ Scheduler..."
+  scripts/config --enable CONFIG_SCHED_ALT
+  scripts/config --enable CONFIG_SCHED_BMQ
+  scripts/config --disable CONFIG_SCHED_PDS
   echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
+  echo -e "\033[0;32mEnable LLVM Thin-LTO..."
+  scripts/config --disable CONFIG_LTO_NONE
+  scripts/config -e LTO_CLANG_THIN 
+  echo -e "\033[0;32mEnable Clang PGO..."
+  scripts/config --enable CONFIG_ARCH_SUPPORTS_PGO_CLANG
+  scripts/config --enable DEBUG_FS
+  scripts/config --enable CONFIG_PGO_CLANG
+
+  echo -e "\033[0;32mHardening Linux Kernel..."
+#  scripts/config --disable CONFIG_SYSVIPC #bug with fakeroot
+  scripts/config --enable CONFIG_DEBUG_FS_ALLOW_NONE
+  scripts/config --enable CONFIG_SECURITY_SELINUX
+  scripts/config --enable CONFIG_SECURITY_APPARMOR
+  scripts/config --set-str CONFIG_LSM lockdown,yama,integrity
+
+  echo -e "\033[0;31mDisabling TOMOYO..."
+  scripts/config --disable CONFIG_SECURITY_TOMOYO
+  echo -e "\033[0;31mDisabling YAMA..."
+  scripts/config --disable CONFIG_SECURITY_YAMA
+  scripts/config --set-str CONFIG_LSM lockdown,integrity,apparmor
+
   echo -e "\033[0;31mDisabling Open-Channel SSD NVM..." # delete since 5.15
   scripts/config --disable CONFIG_NVM
-
-  echo -e "\033[0;31mDisabling SECCOMP..." # changed since 5.16 (https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
-  scripts/config --disable CONFIG_SECCOMP
 
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
@@ -197,7 +223,7 @@ prepare() {
 
 build() {
   cd $_srcname
-  make -j$(nproc) all
+  make ${BUILD_FLAGS[*]} -j$(nproc) all
 }
 
 _package() {
