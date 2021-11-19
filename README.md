@@ -5,18 +5,17 @@ Yet Another Optimized Kernel
 Linux Yaok is a kernel with **Stability First** and Performance in mind.
 
 # Featury bits & pieces
-- Build with Clang/LLVM Lto ***(Still in testing for stability)***
+- Build with Clang/LLVM Thin-Lto
 - Dedicated Kernel for Intel/AMD CPU
 - Dedicated Kernel for Home use and Server use
 - Dedicated Kernel for Server with/without Numa **(Multiple socket cpu)**
 - No OC, timer frequency is set at 300HZ base
-- CacULE CPU Scheduler
+- BMQ CPU Scheduler
 - Build with -03
 - PREEMPT enabled by default
-- Xanmod multigenerational LRU
+- Multigenerational LRU
 - BBRv2 tcp_congestion_control
 - FUTEX, FUTEX2, WINESYNC patch-set
-- Latest Paragon NTFS3 driver support
 - Latest & improved ZSTD patch-set
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
@@ -30,7 +29,7 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 
 Thanks to all those people that have made the kernel possible:
 
-Hamad Marri for the [CacULE Scheduler](https://github.com/hamadmarri/cacule-cpu-scheduler)
+Alfred Chen for the [BMQ Scheduler](https://gitlab.com/alfredchen/projectc)
 
 SirLucjan for many [patches](https://github.com/sirlucjan/kernel-patches)
 
