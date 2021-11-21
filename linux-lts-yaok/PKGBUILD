@@ -25,7 +25,6 @@ source=(
   "${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0005-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_xanpatch}/xanmod/0009-XANMOD-scripts-disable-the-localversion-tag-of-a-git.patch"
-  "${_xanpatch}/xanmod/0012-XANMOD-Makefile-Turn-off-loop-vectorization-for-GCC-.patch"
   "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
   "${_patchsource}/lrng-patches/0001-lrng-patches.patch"
   "${_patchsource}/ll-patches/0003-sched-core-nr_migrate-256-increases-number-of-tasks-.patch"
@@ -50,7 +49,6 @@ sha256sums=('57b2cf6991910e3b67a1b3490022e8a0674b6965c74c12da1e99d138d1991ee8' #
             'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch zen
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
             'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
-            '55d4bea28dad556a3b323d3888abc63880892deed0051fc3bbad9ac0caaa98c4' # Xanmod patch 3
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
             'ceea81a9ca774c039727d74916a06b8e58e8adb3a76dca5157621248097b2577' # LRU patch
             '7f94b2a60aeff5adda028542618490273a86f74620070358eaa80f27b3cf2f12' # ll-patch 1
