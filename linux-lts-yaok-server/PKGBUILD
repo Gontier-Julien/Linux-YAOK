@@ -25,7 +25,6 @@ source=(
   "https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15/spectre-patches/0001-spectre-patches.patch" # backport
   "${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_archpatch}/0002-gcc-plugins-modern-gcc-plugin-infrastructure-requres.patch"
-  "${_xanpatch}/xanmod/0005-kconfig-set-PREEMPT-and-RCU_BOOST-without-delay-by-d.patch"
   "${_xanpatch}/xanmod/0006-dcache-cache_pressure-50-decreases-the-rate-at-which.patch"
   "${_xanpatch}/xanmod/0010-scripts-disable-the-localversion-tag-of-a-git-repo.patch"
   "${_xanpatch}/lrng/0001-drivers-char-Introduce-the-Linux-Random-Number-Gener.patch"
@@ -65,9 +64,8 @@ sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             '96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch zen
             'bb935ad2467637966185b88d18a3f9be2f37d3acdc71ed361eae326ca898d6fc' # arch patch gcc
-            'e2140e7d2769bd742d8f49e3d979e10071bef73daa635df7802dbc15f277c2aa' # Xanmod patch 1
-            'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 2
-            '57274cbc9065176dc86ba1265de53ab9738a47e035b0dd6e22c8e9a31eb1340b' # Xanmod patch 3
+            'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 1
+            '57274cbc9065176dc86ba1265de53ab9738a47e035b0dd6e22c8e9a31eb1340b' # Xanmod patch 2
             'db3a44f4d86a3b10acd203832218f5f5b0948164d3504ecb0350d47795c3f2f2' # Lrng patch 1
             '60d2bf8a50c767982e3919fafa8108b40314e34051d164b7b6c87a5ee0816d72' # Lrng patch 2
             '3da70739f666f388783a4ac1787deb9dbae425e3bf91788667c256ccbeb56f72' # Lrng patch 3
