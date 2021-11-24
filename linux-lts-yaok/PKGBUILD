@@ -15,17 +15,16 @@ makedepends=(bc kmod libelf pahole cpio perl tar xz
 options=('!strip')
 _srcname=linux-${_major}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15"
-_archpatch="https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/linux-lts/trunk"
 _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.15.y-xanmod"
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_major}.tar.xz"
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
   "https://gitlab.com/alfredchen/projectc/-/raw/master/5.15/prjc_v5.15-r1.patch"
-  "https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15/0002-clear-patches.patch"
   "${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0005-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_xanpatch}/xanmod/0009-XANMOD-scripts-disable-the-localversion-tag-of-a-git.patch"
   "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
+  "${_patchsource}/clearlinux-patches/0001-clearlinux-patches.patch"
   "${_patchsource}/lrng-patches/0001-lrng-patches.patch"
   "${_patchsource}/ll-patches/0003-sched-core-nr_migrate-256-increases-number-of-tasks-.patch"
   "${_patchsource}/ll-patches/0004-mm-set-8-megabytes-for-address_space-level-file-read.patch"
@@ -45,11 +44,11 @@ source=(
 sha256sums=('57b2cf6991910e3b67a1b3490022e8a0674b6965c74c12da1e99d138d1991ee8' #Linux 5.15
             'SKIP' #Linux 5.15.x patch
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
-            '35a7cde86fb94939c0f25a62b8c47f3de0dbd3c65f876f460b263181b3e92fc0' # Tkg Clear-Linux patch
             'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch zen
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
             'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
+            '9a13fbcdd6c7ce86ce963653e893bb2f3235e97eb77d9bc88ae2a4e5156d272f' # Clear-Linux patch
             'ceea81a9ca774c039727d74916a06b8e58e8adb3a76dca5157621248097b2577' # LRU patch
             '7f94b2a60aeff5adda028542618490273a86f74620070358eaa80f27b3cf2f12' # ll-patch 1
             '782cc72287d24d9c12032de6de361adc0e27e557b4af2d343f5c5808295282e7' # ll-patch 2
