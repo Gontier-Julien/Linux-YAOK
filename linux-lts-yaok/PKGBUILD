@@ -114,10 +114,10 @@ prepare() {
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
-  echo -e "\033[0;32mEnable LLVM Thin-LTO..."
+  echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
   scripts/config --disable CONFIG_LTO_NONE
   scripts/config -e LTO_CLANG_THIN 
-  echo -e "\033[0;32mEnable Clang PGO..."
+  echo -e "\033[0;32mEnabling Clang PGO..."
   scripts/config --enable CONFIG_ARCH_SUPPORTS_PGO_CLANG
   scripts/config --enable DEBUG_FS
   scripts/config --enable CONFIG_PGO_CLANG
@@ -134,12 +134,12 @@ prepare() {
   echo -e "\033[0;31mDisabling YAMA..."
   scripts/config --disable CONFIG_SECURITY_YAMA
   scripts/config --set-str CONFIG_LSM lockdown,integrity,apparmor
-  echo -e "\033[0;32mEnable Fsync support..."
+  echo -e "\033[0;32mEnabling Fsync support..."
   scripts/config --enable CONFIG_FUTEX
   scripts/config --enable CONFIG_FUTEX_PI
-  echo -e "\033[0;32mEnable Futex2 support..."
+  echo -e "\033[0;32mEnabling Futex2 support..."
   scripts/config --enable CONFIG_FUTEX2
-  echo -e "\033[0;32mEnable winesync support..."
+  echo -e "\033[0;32mEnabling winesync support..."
   scripts/config --module CONFIG_WINESYNC
 
   echo -e "\033[0;32mEnabling highest ZSTD compression ratio..."
@@ -168,7 +168,7 @@ prepare() {
   scripts/config --disable CONFIG_CPU_FREQ_GOV_USERSPACE
   scripts/config --disable CONFIG_CPU_FREQ_GOV_SCHEDUTIL
 
-  echo -e "\033[0;32mEnable PREEMPT..."
+  echo -e "\033[0;32mEnabling PREEMPT..."
   scripts/config --disable CONFIG_PREEMPT_NONE
   scripts/config --disable CONFIG_PREEMPT_VOLUNTARY
   scripts/config --enable CONFIG_PREEMPT

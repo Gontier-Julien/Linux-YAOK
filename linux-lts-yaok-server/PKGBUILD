@@ -145,10 +145,10 @@ prepare() {
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
-  echo -e "\033[0;32mEnable LLVM Thin-LTO..."
+  echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
   scripts/config --disable CONFIG_LTO_NONE
   scripts/config -e LTO_CLANG_THIN 
-  echo -e "\033[0;32mEnable Clang PGO..."
+  echo -e "\033[0;32mEnabling Clang PGO..."
   scripts/config --enable CONFIG_ARCH_SUPPORTS_PGO_CLANG
   scripts/config --enable DEBUG_FS
   scripts/config --enable CONFIG_PGO_CLANG
