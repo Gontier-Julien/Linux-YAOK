@@ -26,8 +26,6 @@ source=(
   "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
   "${_patchsource}/clearlinux-patches/0001-clearlinux-patches.patch"
   "${_patchsource}/lrng-patches/0001-lrng-patches.patch"
-  "${_patchsource}/ll-patches/0003-sched-core-nr_migrate-256-increases-number-of-tasks-.patch"
-  "${_patchsource}/ll-patches/0004-mm-set-8-megabytes-for-address_space-level-file-read.patch"
   "${_patchsource}/fixes-miscellaneous-v5-sep/0004-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
   "${_patchsource}/fixes-miscellaneous-v5-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
   "${_patchsource}/fixes-miscellaneous-v5-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
@@ -36,7 +34,7 @@ source=(
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
   "${_patchsource}/block-ll-patches-v2-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
   "${_patchsource}/zstd-patches/0001-zstd-patches.patch"
-  "${_patchsource}/zstd-upstream-patches-v3/0001-zstd-upstream-patches.patch"
+  "${_patchsource}/zstd-upstream-patches-v4/0001-zstd-upstream-patches.patch"
 #  "${_patchsource}/futex-patches/0001-futex-resync-from-gitlab.collabora.com.patch"
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
@@ -50,8 +48,6 @@ sha256sums=('57b2cf6991910e3b67a1b3490022e8a0674b6965c74c12da1e99d138d1991ee8' #
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
             '9a13fbcdd6c7ce86ce963653e893bb2f3235e97eb77d9bc88ae2a4e5156d272f' # Clear-Linux patch
             'ceea81a9ca774c039727d74916a06b8e58e8adb3a76dca5157621248097b2577' # LRU patch
-            '7f94b2a60aeff5adda028542618490273a86f74620070358eaa80f27b3cf2f12' # ll-patch 1
-            '782cc72287d24d9c12032de6de361adc0e27e557b4af2d343f5c5808295282e7' # ll-patch 2
             'ea73c0b9843113c8546f350b40865fbb38d19150e7466aa06c8099111bb6c646' # Fixes patch 1
             'f2dbef8e69edb75f38d5c8cddf1efc3621746a67352ffc3b94b2d624df6e84c2' # Fixes patch 2
             '6ce80fa13c8e5f663766ba0ae463e13348f18af0d669e743337cbc099789c00a' # Fixes patch 3
@@ -110,6 +106,10 @@ prepare() {
   scripts/config --enable CONFIG_SCHED_ALT
   scripts/config --enable CONFIG_SCHED_BMQ
   scripts/config --disable CONFIG_SCHED_PDS
+
+  echo -e "\033[0;31mDisabling GCC Plugins..."
+  scripts/config --disable CONFIG_GCC_PLUGINS
+
   echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3

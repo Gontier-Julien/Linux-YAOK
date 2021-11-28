@@ -43,8 +43,6 @@ source=(
   "${_xanpatch}/lrng/0014-char-lrng-add-interface-for-gathering-of-raw-entropy.patch"
   "${_xanpatch}/lrng/0015-char-lrng-add-power-on-and-runtime-self-tests.patch"
   "${_patchsource}/bbr2-patches-v3/0001-bbr2-5.10-introduce-BBRv2.patch"
-  "${_patchsource}/ll-patches/0003-sched-core-nr_migrate-256-increases-number-of-tasks-.patch"
-  "${_patchsource}/ll-patches/0004-mm-set-8-megabytes-for-address_space-level-file-read.patch"
   "${_patchsource}/lqx-patches-v4-sep/0002-zen-Allow-MSR-writes-by-default.patch"
   "${_patchsource}/fixes-miscellaneous-v11-sep/0003-kbuild-add-fcf-protection-none-to-retpoline-flags.patch"
   "${_patchsource}/fixes-miscellaneous-v11-sep/0004-mm-Disable-watermark-boosting-by-default.patch"
@@ -82,8 +80,6 @@ sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #
             '189f49a4e454b1b2ce4ee4baa30eecf643596b1b64fd807eb79f3bc0938665d4' # Lrng patch 14
             '690de39a89f562b3dcf01b4dc8b64faa9855656c0c765a7d2e5946178fb1e1f9' # Lrng patch 15
             '167d1732e57601dece7eec95d22bcbc43b1b2815fd73182933c1757abe7189b7' # BBR2 patch
-            '331dd459a21a4afd65e2c59848666b9dd420f87f4ad01ec3012b47f3acc992ef' # ll-patch 1
-            '77ff83080ce0b83c81bc085a0e276b08db572aed725dacc5a1b804c9d0f36733' # ll-patch 2
             '4fca3c8fd9e30b161b1700614b4a2c96346706dabfb3c5e290e892482ba00cd0' # lqx patch for MSR
             '451733f8a794356769a9359f0171d9378bb8129edc8892385fee016da73bb3da' # Fixes patch 1
             '6a92eb2a9a8b480b0b412563c301e2343022b42db1ddd8fd2d6b4ed6a7424c06' # Fixes patch 2
@@ -141,6 +137,10 @@ prepare() {
   scripts/config --enable CONFIG_SCHED_ALT
   scripts/config --enable CONFIG_SCHED_BMQ
   scripts/config --disable CONFIG_SCHED_PDS
+
+  echo -e "\033[0;31mDisabling GCC Plugins..."
+  scripts/config --disable CONFIG_GCC_PLUGINS
+
   echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
