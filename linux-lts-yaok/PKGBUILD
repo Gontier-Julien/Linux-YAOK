@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.15
-_minor=3
+_minor=6
 pkgbase=linux-lts-yaok
 pkgver=${_major}.${_minor}
 pkgrel=1
