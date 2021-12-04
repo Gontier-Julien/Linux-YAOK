@@ -31,4 +31,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: pull docker image
         shell: bash
-        run: docker pull whynothugo/makepkg
+        run: docker run whynothugo/makepkg
