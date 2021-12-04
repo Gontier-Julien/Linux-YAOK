@@ -31,5 +31,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: build
         run: |
-            chmod +x ./script.sh
-            sh script.sh
+            chmod +x ./build.sh
+            sh build.sh
