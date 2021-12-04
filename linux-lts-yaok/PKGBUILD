@@ -13,12 +13,11 @@ makedepends=(bc kmod libelf pahole cpio perl tar xz
              xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
              clang llvm lld)
 options=('!strip')
-_srcname=linux-${_major}
+_srcname=linux-${pkgver}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15"
 _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.15.y-xanmod"
 source=(
-  "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_major}.tar.xz"
-  "https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+  "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://gitlab.com/alfredchen/projectc/-/raw/master/5.15/prjc_v5.15-r1.patch"
   "${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0005-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
@@ -39,8 +38,7 @@ source=(
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
 )
-sha256sums=('57b2cf6991910e3b67a1b3490022e8a0674b6965c74c12da1e99d138d1991ee8' #Linux 5.15
-            'SKIP' #Linux 5.15.x patch
+sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' #Linux 5.15.6
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
             'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch zen
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
@@ -72,10 +70,6 @@ export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EP
 
 prepare() {
   cd $_srcname
-
-  ### Add upstream patches
-  echo "Add upstream patches"
-  patch -Np1 -i ../patch-${pkgver}
 
   echo "Setting version..."
   scripts/setlocalversion --save-scmversion

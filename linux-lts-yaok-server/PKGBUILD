@@ -12,14 +12,12 @@ license=(GPL2)
 makedepends=(bc kmod libelf pahole cpio perl tar xz 
              xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick)
 options=('!strip')
-_srcname=linux-${_major}
-_srctag=${pkgver}-hardened1
+_srcname=linux-${pkgver}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.10"
 _archpatch="https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/linux-lts/trunk"
 _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.10.y-xanmod"
 source=(
-  "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_major}.tar.xz"
-  "https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
+  "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://gitlab.com/alfredchen/projectc/-/raw/master/5.10-lts/prjc_v5.10-lts-r3.patch"
   "https://gitlab.com/alfredchen/linux-prjc/uploads/eab8442acae2744f531fda205d8c8c53/prjc-20211115-update-sched_post_fork__-signature.patch" # backport temporary fix
   "https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15/spectre-patches/0001-spectre-patches.patch" # backport
@@ -55,8 +53,7 @@ source=(
   "${_patchsource}/zstd-upstream-patches/0001-zstd-upstream-patches.patch"
   "config"         # the main kernel config file
 )
-sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43' #Linux 5.10
-            'SKIP' #Linux 5.10.x patch
+sha256sums=('477ce8f7624263e4346c0fc25ffc334af06bcac4d6bebdd5a7fe4681557fdb39' #Linux 5.10.80
             'f4562c31658d7e18dbbfc3220bc5350fc896e6d338714420533a3df8642778d1' # BMQ patch
             '6fdc2a8e55676c87040beb2c13ed6da5dc45984e1e02d1541a785075a98985ef' # backport temporary fix
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
@@ -103,10 +100,6 @@ export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EP
 
 prepare() {
   cd $_srcname
-
-  ### Add upstream patches
-  echo "Add upstream patches"
-  patch -Np1 -i ../patch-${pkgver}
 
   echo "Setting version..."
   scripts/setlocalversion --save-scmversion
