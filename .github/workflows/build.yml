@@ -29,9 +29,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: pull docker image
-        shell: bash
-        run: docker pull whynothugo/makepkg
-      - name: run docker image
-        shell: bash
-        run: docker run whynothugo/makepkg
+      - name: build
+        run: |
+            chmod +x ./script.sh
+            sh script.sh
