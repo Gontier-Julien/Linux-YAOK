@@ -7,3 +7,4 @@ do
   cd $d
 
   docker run --name dockerbuild -e EXPORT_PKG=1 -v $PWD:/pkg whynothugo/makepkg
+done
