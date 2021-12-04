@@ -30,4 +30,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: pull docker image
-        uses: whynothugo/makepkg
+        uses: whynothugo/makepkg@latest
