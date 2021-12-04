@@ -54,7 +54,7 @@ sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' #
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             '50a891cd23222b3fcf997cf16bc15088871ba2f31a39fdfa97973715bbbf6e3e' # Multithreading I/O patch
             '74c84814a670c68f0291f94b76fe00eac96b0e7965ed1762dbffd7c938dd9fdc' # Zstd patch
-            'fc55b75f6c2fcb45df2f01f58806cae0708022932cd2c33b888bb427913ec285' # Upstream Zstd patch
+            '6405bd97bb9b443fdb98de90f9962717d6613d68c73df8fa774d727677784db3' # Upstream Zstd patch
             #'4c07123b8b8e95e4ec8fc36371aa7093c5af887b1e61251eb25db8c8ddc6ccf5' # Futex patch
             'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
             'SKIP') #config
