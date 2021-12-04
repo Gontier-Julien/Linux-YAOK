@@ -6,5 +6,5 @@ do
   d=$(dirname $f)
   cd $d
 
-  docker run --name dockerbuild -e EXPORT_PKG=1 -v $PWD:/pkg whynothugo/makepkg
+  docker run --name dockerbuild -e EXPORT_PKG=1 -v $PWD:/pkg snowy68/makepkg
 done
