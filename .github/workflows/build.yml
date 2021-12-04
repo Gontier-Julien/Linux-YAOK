@@ -29,7 +29,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Checkout
-        run: |
-         chmod +x ./script.sh
-         sh script.sh
+      - name: pull docker image
+        uses: whynothugo/makepkg
