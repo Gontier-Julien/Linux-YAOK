@@ -7,8 +7,7 @@ do
   cd $d
 
   docker run --name dockerbuild -e EXPORT_PKG=1 -v $PWD:/pkg snowy68/makepkg
+  mv /pkg/*.tar.zst* /home/runner/work/Linux-YAOK/Linux-YAOK/
   docker rm dockerbuild
   cd ..
 done
-
-mv */*.tar.zst* /home/runner/work/Linux-YAOK/Linux-YAOK/

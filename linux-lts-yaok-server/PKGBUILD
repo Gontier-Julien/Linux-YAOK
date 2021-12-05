@@ -10,7 +10,8 @@ url='https://gitlab.com/alfredchen/linux-prjc'
 arch=(x86_64 x86_64_v3)
 license=(GPL2)
 makedepends=(bc kmod libelf pahole cpio perl tar xz 
-             xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick)
+             xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
+             clang llvm lld)
 options=('!strip')
 _srcname=linux-${pkgver}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.10"
@@ -141,10 +142,6 @@ prepare() {
   echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
   scripts/config --disable CONFIG_LTO_NONE
   scripts/config -e LTO_CLANG_THIN 
-  echo -e "\033[0;32mEnabling Clang PGO..."
-  scripts/config --enable CONFIG_ARCH_SUPPORTS_PGO_CLANG
-  scripts/config --enable DEBUG_FS
-  scripts/config --enable CONFIG_PGO_CLANG
 
   echo -e "\033[0;32mHardening Linux Kernel..."
 #  scripts/config --disable CONFIG_SYSVIPC #bug with fakeroot
