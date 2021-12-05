@@ -1,6 +1,4 @@
- #!/usr/bin/env bash
-#make output directory
-mkdir /output
+#!/usr/bin/env bash
 files=$(find . -name "PKGBUILD")
 
 for f in $files
