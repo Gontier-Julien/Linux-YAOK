@@ -1,4 +1,6 @@
  #!/usr/bin/env bash
+#make output directory
+mkdir /output
 files=$(find . -name "PKGBUILD")
 
 for f in $files
@@ -7,6 +9,7 @@ do
   cd $d
 
   docker run --name dockerbuild -e EXPORT_PKG=1 -v $PWD:/pkg snowy68/makepkg
+  docker cp /pkg/*/*.zst /output/
   docker rm dockerbuild
   cd ..
 done
