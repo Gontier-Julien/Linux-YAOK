@@ -7,7 +7,7 @@ do
   cd $d
 
   docker run --name dockerbuild -e EXPORT_PKG=1 -v $PWD:/pkg snowy68/makepkg
-  docker cp /pkg/*/*.zst /output/
+  docker cp dockerbuild:/pkg/*/*.zst /home/runner/work/Linux-YAOK/Linux-YAOK/
   docker rm dockerbuild
   cd ..
 done

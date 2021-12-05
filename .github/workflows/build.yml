@@ -31,11 +31,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: build
         run: |
-            mkdir /output
             chmod +x ./build.sh
             sh build.sh
 
       - uses: actions/upload-artifact@v2
         with:
             name: linux-YAOK
-            path: output/*.zst # or path/to/artifact
+            path: home/runner/work/Linux-YAOK/Linux-YAOK/*.zst # or path/to/artifact
