@@ -47,7 +47,7 @@ Server = https://github.com/gontier-julien/linux-yaok/releases/latest/download
 
 # DKMS
 
-Since Linux YAOK use Clang/LLVM, you will need to edit your ***/etc/dkms/framework.conf* config to make the module compile for the kernel.
+Since Linux YAOK use Clang/LLVM, you will need to edit your `/etc/dkms/framework.conf` config to make the module compile for the kernel.
 
 Add the following at the **end** of you're `/etc/dkms/framework.conf` file:
 ```
