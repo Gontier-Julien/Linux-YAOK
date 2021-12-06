@@ -22,11 +22,15 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 Linux-YAOK follow a specific cylces of release and testing, before it is ready to be in the repo.
 The kernel while always follow the Lts cycles.
 
-The "normal" kernel while be updated every 2 version at the moment,
+The "normal" kernel while be updated every 4 version at the moment,
 and the server variant every 10 versions.
 
 With my current setup it not possible for me to compile each kernel every time a new version is out,
 and it limite the server downtime.
+
+**But if you're on Arch Linux don't use the Lts kernel (probably a "I use Arch BTW" elite user)**
+
+Shhhh *place finger on the mouth* people who use Arch Linux, also want to a kernel that is not always bleading edge and stable.
 
 # DKMS
 
