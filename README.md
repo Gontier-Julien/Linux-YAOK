@@ -2,7 +2,7 @@
 Yet Another Optimized Kernel
 
 # Yet another one
-Linux Yaok is a kernel with **Stability First** and Performance in mind.
+Linux Yaok is a kernel with `Stability First` and Performance in mind.
 
 # Featury bits & pieces
 - Build with Clang/LLVM Thin-Lto
@@ -19,6 +19,7 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
 
+<br/>
 Linux-YAOK follow a specific cylces of release and testing, before it is ready to be in the repo.
 The kernel while always follow the Lts cycles.
 
@@ -27,6 +28,8 @@ and the server variant every 10 versions.
 
 With my current setup it not possible for me to compile each kernel every time a new version is out,
 and it limite the server downtime.
+
+<br/>
 
 **But if you're on Arch Linux don't use the Lts kernel (probably a "I use Arch BTW" elite user)**
 
