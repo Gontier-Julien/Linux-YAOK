@@ -55,6 +55,20 @@ export LLVM=1
 export CC=clang
 ```
 
+# Check if your system support the x86-64-v3 architecture
+
+Check which architecture-levels your CPU supports with:
+```
+/lib/ld-linux-x86-64.so.2 --help
+```
+Example output if your system supporting up to x86-64-v3:
+```
+Subdirectories of glibc-hwcaps directories, in priority order:
+  x86-64-v4
+  x86-64-v3 (supported, searched)
+  x86-64-v2 (supported, searched)
+```
+
 # TODO
 
 - [ ] Redo the server config + add server V3
