@@ -33,7 +33,7 @@ and it limite the server downtime.
 
 **But if you're on Arch Linux don't use the Lts kernel (probably a "I use Arch BTW" elite user)**
 
-Shhhh *place finger on the mouth* people who use Arch Linux, also want to a kernel that is not always bleading edge and stable.
+Shhhh *place finger on the mouth*, people who use Arch Linux, also want to have a kernel that is not always bleading edge.
 
 # Repo
 
