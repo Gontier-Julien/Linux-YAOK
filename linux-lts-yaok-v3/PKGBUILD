@@ -111,9 +111,6 @@ prepare() {
   scripts/config --disable CONFIG_GENERIC_CPU
   scripts/config --enable CONFIG_GENERIC_CPU3
 
-  echo -e "\033[0;31mDisabling GCC Plugins..."
-  scripts/config --disable CONFIG_GCC_PLUGINS
-
   echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
   scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
   scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
