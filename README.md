@@ -19,6 +19,15 @@ Linux Yaok is a kernel with **Stability First** and Performance in mind.
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
 
+Linux-YAOK follow a specific cylces of release and testing, before it is ready to be in the repo.
+The kernel while always follow the Lts cycles.
+
+The "normal" kernel while be updated every 2 version at the moment,
+and the server variant every 10 versions.
+
+With my current setup it not possible for me to compile each kernel every time a new version is out,
+and it limite the server downtime.
+
 # DKMS
 
 Since Linux YAOK use Clang/LLVM, you will need to edit your ***/etc/dkms/framework.conf* config to make the module compile for the kernel.
