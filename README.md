@@ -31,6 +31,8 @@ export CC=clang
 
 # TODO
 
+- [ ] Redo the server config
+- [ ] Build server and official repo
 - [ ] Add builds for Debian
 
 
