@@ -1,0 +1,9 @@
+linux-lts-server-yaok-*-x86_64.pkg.tar.zst
+linux-lts-server-yaok-headers-*-x86_64.pkg.tar.zst
+linux-lts-yaok-*-x86_64.pkg.tar.zst
+linux-lts-yaok-headers-*-x86_64.pkg.tar.zst
+linux-yaok.db
+linux-yaok.db.tar.zst
+linux-yaok.files
+linux-yaok.files.tar.zst
+repo.sh
