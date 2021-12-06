@@ -32,6 +32,16 @@ and it limite the server downtime.
 
 Shhhh *place finger on the mouth* people who use Arch Linux, also want to a kernel that is not always bleading edge and stable.
 
+# Repo
+
+Add this to the end of your `pacman.conf`:
+
+```
+[linux-yaok]
+SigLevel = Optional TrustedOnly
+Server = https://github.com/gontier-julien/linux-yaok/releases/latest/download
+```
+
 # DKMS
 
 Since Linux YAOK use Clang/LLVM, you will need to edit your ***/etc/dkms/framework.conf* config to make the module compile for the kernel.
