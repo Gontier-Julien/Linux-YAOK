@@ -36,6 +36,8 @@ and it limite the server downtime.
 
 Shhhh *place finger on the mouth*, people who use Arch Linux, also want to have a kernel that is not always bleading edge.
 
+I also recommend to take a small look at the [Wiki](https://github.com/Gontier-Julien/Linux-YAOK/wiki)
+
 # Repo
 
 Add this to the end of your `pacman.conf`:
