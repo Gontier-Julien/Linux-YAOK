@@ -19,6 +19,8 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
 
+> ***_At the moment the server variants while be built later_***
+
 <br/>
 Linux-YAOK follow a specific cylces of release and is tested before it is going in the repo.
 The kernel while always follow the Lts cycles.
