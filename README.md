@@ -21,6 +21,8 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 
 > ***_At the moment the server variants while be built later_***
 
+*To see any new kernel change you can take a look at the changelog in the [testing repo.](https://github.com/Gontier-Julien/Linux-YAOK-Testing/blob/main/Changlog.md)*
+
 <br/>
 Linux-YAOK follow a specific cylces of release and is tested before it is going in the repo.
 The kernel while always follow the Lts cycles.
