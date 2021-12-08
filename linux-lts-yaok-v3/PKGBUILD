@@ -32,7 +32,6 @@ source=(
   "${_patchsource}/fixes-miscellaneous-v6-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
   "${_patchsource}/fixes-miscellaneous-v6-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/fixes-miscellaneous-v6-sep/0013-Disable-stack-conservation-for-GCC.patch"
-  "${_patchsource}/net-patches/0001-net-patches.patch"
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
   "${_patchsource}/block-ll-patches-v2-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
   "${_patchsource}/zstd-patches/0001-zstd-patches.patch"
@@ -44,7 +43,7 @@ source=(
 sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' # Linux 5.15.6
             '380bcf40cc8396e97bd1d7f2577ab2ace51885858d3f155b1fb2dd5469efd00d' # Graysky2 patch for x86-64-v3
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
-            'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch zen
+            'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
             'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
@@ -56,7 +55,6 @@ sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' #
             '3344e26bebb87f0e9e08867a0c895cf40194dd6057b82788743bdcfb9a105e00' # Fixes patch 4
             '629cdeb5607017d3f602ebfac1aabc2353a3f138b02ad3c54e507bdaaa675594' # Fixes patch 5
             '2338beacc558763dfb6753a641e31706602e81c3481a28413c7c59a7ddda2b27' # Fixes patch 6
-            'a31dda34e61b6ec7b6a80e1aafe976352c6a16b89afb58ec1efa89e0a5509e88' # Linux 5.16 network patch
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             '50a891cd23222b3fcf997cf16bc15088871ba2f31a39fdfa97973715bbbf6e3e' # Multithreading I/O patch
             '74c84814a670c68f0291f94b76fe00eac96b0e7965ed1762dbffd7c938dd9fdc' # Zstd patch

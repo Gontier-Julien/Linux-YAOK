@@ -40,7 +40,7 @@ source=(
 )
 sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' # Linux 5.15.6
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
-            'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch zen
+            'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
             'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
