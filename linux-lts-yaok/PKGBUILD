@@ -4,7 +4,7 @@ _major=5.15
 _minor=6
 pkgbase=linux-lts-yaok
 pkgver=${_major}.${_minor}
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
 arch=(x86_64 x86_64_v3)
@@ -19,17 +19,17 @@ _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://gitlab.com/alfredchen/projectc/-/raw/master/5.15/prjc_v5.15-r1.patch"
-  "${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
+  #"${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0005-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_xanpatch}/xanmod/0009-XANMOD-scripts-disable-the-localversion-tag-of-a-git.patch"
   "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
   "${_patchsource}/clearlinux-patches/0001-clearlinux-patches.patch"
-  "${_patchsource}/lrng-patches/0001-lrng-patches.patch"
-  "${_patchsource}/fixes-miscellaneous-v5-sep/0004-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
-  "${_patchsource}/fixes-miscellaneous-v5-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
-  "${_patchsource}/fixes-miscellaneous-v5-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
-  "${_patchsource}/fixes-miscellaneous-v5-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
-  "${_patchsource}/fixes-miscellaneous-v5-sep/0013-Disable-stack-conservation-for-GCC.patch"
+  "${_patchsource}/lrng-upstream-patches-v2/0001-lrng-patches.patch"
+  "${_patchsource}/fixes-miscellaneous-v8-sep/0004-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
+  "${_patchsource}/fixes-miscellaneous-v8-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
+  "${_patchsource}/fixes-miscellaneous-v8-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
+  "${_patchsource}/fixes-miscellaneous-v8-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
+  "${_patchsource}/fixes-miscellaneous-v8-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
   "${_patchsource}/block-ll-patches-v2-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
   "${_patchsource}/zstd-patches/0001-zstd-patches.patch"
@@ -38,19 +38,19 @@ source=(
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
 )
-sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' # Linux 5.15.6
+sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' #Linux 5.15.6
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
-            'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
+            #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
             'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
             '9a13fbcdd6c7ce86ce963653e893bb2f3235e97eb77d9bc88ae2a4e5156d272f' # Clear-Linux patch
-            'ceea81a9ca774c039727d74916a06b8e58e8adb3a76dca5157621248097b2577' # LRU patch
-            'ea73c0b9843113c8546f350b40865fbb38d19150e7466aa06c8099111bb6c646' # Fixes patch 1
-            'f2dbef8e69edb75f38d5c8cddf1efc3621746a67352ffc3b94b2d624df6e84c2' # Fixes patch 2
-            '6ce80fa13c8e5f663766ba0ae463e13348f18af0d669e743337cbc099789c00a' # Fixes patch 3
-            'e9c7130de788ce26df106541a51ca26d54a7ae03094eee1e2cedd15158b1a32b' # Fixes patch 4
-            '21a0797ad9378a9f1e2f6bc68c8ad7a2f2e3882f8ac2e4ddd581da70f4ebf67a' # Fixes patch 5
+            '072d3a7061582d5f43f83e312fb473285068d49219d0dfefc8aee3033de9414a' # LRNG patch
+            '59ca76fd450b458b643386e039bbff037372155bd019217c0cb7fdafc9795f38' # Fixes patch 1
+            '3be185ec6614e0410d681beb03f0c27b489bb21b4f71dd0d45d6f7a7d3bccb10' # Fixes patch 2
+            '891df4df3881c3ba0589e8648aeb9e586d4c81ad390cb6f51967341befa36106' # Fixes patch 3
+            '382e8317c5157508aafcfcdc556a1c47ac9f2e8a90faa496b7066b599c7b45d8' # Fixes patch 4
+            '864f4b77053bad8ea744866367b3bde50df517745235e471c39b944b5608e44f' # Fixes patch 5
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             '50a891cd23222b3fcf997cf16bc15088871ba2f31a39fdfa97973715bbbf6e3e' # Multithreading I/O patch
             '74c84814a670c68f0291f94b76fe00eac96b0e7965ed1762dbffd7c938dd9fdc' # Zstd patch
@@ -146,6 +146,9 @@ prepare() {
   scripts/config --enable CONFIG_TCP_CONG_BBR2
   scripts/config --enable CONFIG_DEFAULT_BBR2
   scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr2
+  echo -e "\033[0;32mSet CAKE as the default queuing..."
+  scripts/config --set-str CONFIG_DEFAULT_NET_SCH cake
+
   echo -e "\033[0;32mSetting performance governor..."
   scripts/config --disable CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL
   scripts/config --enable CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE
