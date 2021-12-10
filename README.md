@@ -21,18 +21,15 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
 
-> ***_At the moment the server variants while be built later_***
-
 *To see any new kernel change you can take a look at the changelog in the [testing repo.](https://github.com/Gontier-Julien/Linux-YAOK-Testing/blob/main/Changlog.md)*
 
 <br/>
 Linux-YAOK follow a specific cylces of release and is tested before it is going in the repo.
 The kernel while always follow the Lts cycles.
 
-The home variant while be updated every 4 version at the moment, and the server variant every 10 versions.
+The home variant while be updated every 2 version at the moment, and the server variant every 10 versions.
 
-With my current setup it not possible for me to compile each kernel every time a new version is out,
-and it limite the server downtime.
+With my current setup it not possible for me to compile each kernel every time a new version is out
 
 <br/>
 
