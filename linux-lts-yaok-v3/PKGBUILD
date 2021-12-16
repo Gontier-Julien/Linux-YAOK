@@ -1,11 +1,11 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.15
-_minor=6
+_minor=8
 pkgbase=linux-lts-yaok-v3
 pkgver=${_major}.${_minor}
-pkgrel=2
-pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
+pkgrel=1
+pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
 arch=(x86_64 x86_64_v3)
 license=(GPL2)
@@ -39,7 +39,7 @@ source=(
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
 )
-sha256sums=('b3e9ba06a299a3e2ead4a15753bc46a3e0c90d3b92ffeed1034ccc9f13a717f0' # Linux 5.15.6
+sha256sums=('d756527313ee09c8b0376975fb7890e2eddce9714967504093b2c0fab5c0f3bd' #Linux 5.15.8
             '380bcf40cc8396e97bd1d7f2577ab2ace51885858d3f155b1fb2dd5469efd00d' # Graysky2 patch for x86-64-v3
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
@@ -107,9 +107,9 @@ prepare() {
   scripts/config --disable CONFIG_GENERIC_CPU
   scripts/config --enable CONFIG_GENERIC_CPU3
 
-  echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
-  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
-  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
+#  echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
+#  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
+#  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
   echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
   scripts/config --disable CONFIG_LTO_NONE
