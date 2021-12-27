@@ -75,14 +75,16 @@ Subdirectories of glibc-hwcaps directories, in priority order:
 
 # TODO
 
-- [ ] Redo the server config + add server V3
-- [ ] Build server and official repo
+- [ ] Redo the server config + add server V3 (partilly done)
+- [ ] Build server and official repo (partilly done)
 - [ ] Add builds for Debian
 
 
 # Contributors
 
 Thanks to all those people that have made the kernel possible:
+
+Ptr1337 from the [CachyOs repo](https://github.com/cachyos/linux-cachyos) for the base PKGBUILD
 
 Alfred Chen for the [BMQ Scheduler](https://gitlab.com/alfredchen/projectc)
 
