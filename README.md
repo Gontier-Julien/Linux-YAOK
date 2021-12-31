@@ -10,9 +10,9 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - Build with Clang/LLVM Thin-Lto
 - Dedicated Kernel for x86-64-v3 architectures
 - Dedicated Kernel for Home use and Server use
-- No OC, timer frequency is set at 300HZ base
+- No OC, timer frequency is set at 250HZ base
 - BMQ CPU Scheduler
-- Build with -03
+- Build with -02
 - PREEMPT enabled by default
 - Multigenerational LRU
 - BBRv2 tcp_congestion_control
