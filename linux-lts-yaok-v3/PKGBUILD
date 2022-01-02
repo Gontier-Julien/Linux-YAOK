@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.15
-_minor=8
+_minor=12
 pkgbase=linux-lts-yaok-v3
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -24,40 +24,38 @@ source=(
   "${_xanpatch}/xanmod/0005-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_xanpatch}/xanmod/0009-XANMOD-scripts-disable-the-localversion-tag-of-a-git.patch"
   "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
-  "${_patchsource}/clearlinux-patches/0001-clearlinux-patches.patch"
+  "${_patchsource}/clearlinux-patches-v2/0001-clearlinux-patches.patch"
   "${_patchsource}/lrng-upstream-patches-v2/0001-lrng-patches.patch"
-  "${_patchsource}/fixes-miscellaneous-v8-sep/0004-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
-  "${_patchsource}/fixes-miscellaneous-v8-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
-  "${_patchsource}/fixes-miscellaneous-v8-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
-  "${_patchsource}/fixes-miscellaneous-v8-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
-  "${_patchsource}/fixes-miscellaneous-v8-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
+  "${_patchsource}/fixes-miscellaneous-v9-sep/0004-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
+  "${_patchsource}/fixes-miscellaneous-v9-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
+  "${_patchsource}/fixes-miscellaneous-v9-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
+  "${_patchsource}/fixes-miscellaneous-v9-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
+  "${_patchsource}/fixes-miscellaneous-v9-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
-  "${_patchsource}/block-ll-patches-v2-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
-  "${_patchsource}/zstd-patches/0001-zstd-patches.patch"
+  "${_patchsource}/block-patches-v2-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
+  "${_patchsource}/zstd-patches-v2/0001-zstd-patches.patch"
   "${_patchsource}/zstd-upstream-patches-v4/0001-zstd-upstream-patches.patch"
-#  "${_patchsource}/futex-patches/0001-futex-resync-from-gitlab.collabora.com.patch"
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
 )
-sha256sums=('d756527313ee09c8b0376975fb7890e2eddce9714967504093b2c0fab5c0f3bd' #Linux 5.15.8
+sha256sums=('7de919772b62647591527e904e3b3583783381a29d812404f58a222484e751a0' # Linux 5.15.12
             '380bcf40cc8396e97bd1d7f2577ab2ace51885858d3f155b1fb2dd5469efd00d' # Graysky2 patch for x86-64-v3
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
             'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
-            '9a13fbcdd6c7ce86ce963653e893bb2f3235e97eb77d9bc88ae2a4e5156d272f' # Clear-Linux patch
+            '61752017bd0b9cfb2b2aded6186638b37a764f1df9614999d2ecbc5b3a9073a6' # Clear-Linux patch
             '072d3a7061582d5f43f83e312fb473285068d49219d0dfefc8aee3033de9414a' # LRNG patch
-            '59ca76fd450b458b643386e039bbff037372155bd019217c0cb7fdafc9795f38' # Fixes patch 1
-            '3be185ec6614e0410d681beb03f0c27b489bb21b4f71dd0d45d6f7a7d3bccb10' # Fixes patch 2
-            '891df4df3881c3ba0589e8648aeb9e586d4c81ad390cb6f51967341befa36106' # Fixes patch 3
-            '382e8317c5157508aafcfcdc556a1c47ac9f2e8a90faa496b7066b599c7b45d8' # Fixes patch 4
-            '864f4b77053bad8ea744866367b3bde50df517745235e471c39b944b5608e44f' # Fixes patch 5
+            'b732be1a72c8c0224822d98dc4179443f359c97dde8cc463a375908b7bb47ab6' # Fixes patch 1
+            '3005924973226e380e44951a82c978a8b3b6dd55a0558250f6682580047a3215' # Fixes patch 2
+            '84b3cf5400ece652cc5ac237fca3eed1f86c714be1f666e5958a6d4cdaf49f02' # Fixes patch 3
+            '3b04c66dc248f8b5a756f5670364cdd79f51e3b8990148313eb10d1c1aead6ab' # Fixes patch 4
+            '5c3a57566f68f202c9ad219885fae6ab20946b54c575a2789f079edb22df3e03' # Fixes patch 5
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
-            '50a891cd23222b3fcf997cf16bc15088871ba2f31a39fdfa97973715bbbf6e3e' # Multithreading I/O patch
-            '74c84814a670c68f0291f94b76fe00eac96b0e7965ed1762dbffd7c938dd9fdc' # Zstd patch
+            'b1f65869d0032e683e79fcba0e98d44b115c3277b9ef186e0e842a2026d7ad3a' # Multithreading I/O patch
+            '7abe8f3cf527b5988e613efe6b4565c2a8e45d0c2d03413d3b3cdbcfde6abd42' # Zstd patch
             '6405bd97bb9b443fdb98de90f9962717d6613d68c73df8fa774d727677784db3' # Upstream Zstd patch
-            #'4c07123b8b8e95e4ec8fc36371aa7093c5af887b1e61251eb25db8c8ddc6ccf5' # Futex patch
             'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
             'SKIP') #config
 
