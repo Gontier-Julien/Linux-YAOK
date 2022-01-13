@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.10
-_minor=80
+_minor=90
 pkgbase=linux-lts-server-yaok-v3
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -23,8 +23,7 @@ source=(
   "https://gitlab.com/alfredchen/projectc/-/raw/master/5.10-lts/prjc_v5.10-lts-r3.patch"
   "https://gitlab.com/alfredchen/linux-prjc/uploads/eab8442acae2744f531fda205d8c8c53/prjc-20211115-update-sched_post_fork__-signature.patch" # backport temporary fix
   "https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15/spectre-patches/0001-spectre-patches.patch" # backport
-  "${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
-  "${_archpatch}/0002-gcc-plugins-modern-gcc-plugin-infrastructure-requres.patch"
+  #"${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0006-dcache-cache_pressure-50-decreases-the-rate-at-which.patch"
   "${_xanpatch}/xanmod/0010-scripts-disable-the-localversion-tag-of-a-git-repo.patch"
   "${_xanpatch}/lrng/0001-drivers-char-Introduce-the-Linux-Random-Number-Gener.patch"
@@ -48,20 +47,18 @@ source=(
   "${_patchsource}/fixes-miscellaneous-v11-sep/0004-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/fixes-miscellaneous-v11-sep/0005-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
   "${_patchsource}/fixes-miscellaneous-v11-sep/0006-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
-  "${_patchsource}/fixes-miscellaneous-v11-sep/0008-kbuild-Disable-stack-conservation-for-GCC.patch"
   "${_patchsource}/fixes-miscellaneous-v11-sep/0012-scsi-sd-Optimal-I-O-size-should-be-a-multiple-of-rep.patch"
   "${_patchsource}/block-patches-v3-sep/0003-block-set-rq_affinity-2-for-full-multithreading-I-O.patch"
   "${_patchsource}/zstd-patches-v3/0001-init-add-support-for-zstd-compressed-modules.patch"
   "${_patchsource}/zstd-upstream-patches/0001-zstd-upstream-patches.patch"
   "config"         # the main kernel config file
 )
-sha256sums=('477ce8f7624263e4346c0fc25ffc334af06bcac4d6bebdd5a7fe4681557fdb39' # Linux 5.10.80
+sha256sums=('945e4264c014a3d9dfc0a4639309dd1ec2fb545416556421f931b95da78c2725' # Linux 5.10.90
             '2f99d9e37f372925e054115bfead4723a328ffbdb7bf958753aab2ac48dc5673' # Graysky2 patch for x86-64-v3
             'f4562c31658d7e18dbbfc3220bc5350fc896e6d338714420533a3df8642778d1' # BMQ patch
             '6fdc2a8e55676c87040beb2c13ed6da5dc45984e1e02d1541a785075a98985ef' # backport temporary fix
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
-            '96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch
-            'bb935ad2467637966185b88d18a3f9be2f37d3acdc71ed361eae326ca898d6fc' # arch patch gcc
+            #'96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch zen
             'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 1
             '57274cbc9065176dc86ba1265de53ab9738a47e035b0dd6e22c8e9a31eb1340b' # Xanmod patch 2
             'db3a44f4d86a3b10acd203832218f5f5b0948164d3504ecb0350d47795c3f2f2' # Lrng patch 1
@@ -85,8 +82,7 @@ sha256sums=('477ce8f7624263e4346c0fc25ffc334af06bcac4d6bebdd5a7fe4681557fdb39' #
             '6a92eb2a9a8b480b0b412563c301e2343022b42db1ddd8fd2d6b4ed6a7424c06' # Fixes patch 2
             '0740cfe84aba7776823f4d804384266391edec05672fafd456b42486362d5666' # Fixes patch 3
             'da18f29b70ef25114b09a92107d1ea22d3485578a75b08afa896dbee6a0e8276' # Fixes patch 4
-            '98970e9eb43d1b5b0fc6486834ff9c418e7821fe0487f23acdcb7bf13a1460bb' # Fixes patch 5
-            'e0a7d59c339dc4ac9aa98a1e192d6f6bf2d8c12e67838dbacc13aeab72799edf' # Fixes patch 6
+            'e0a7d59c339dc4ac9aa98a1e192d6f6bf2d8c12e67838dbacc13aeab72799edf' # Fixes patch 5
             'fb8328b049abe6d15def1221de8177ebcb7492b596c361c52230f4cc7ca3bfd7' # multithreading I/O patch
             '2ba659db7ecf3f8349dfd65012c0aa156fedee2877a0f8c6d95c76fdb19b3583' # Zstd patch
             '137811c7d916c608f9ebb7e4d82ec93ea7592d99fe6394cf908c0e12e9881a7d' # Upstream Zstd patch
@@ -134,16 +130,13 @@ prepare() {
   scripts/config --enable CONFIG_SCHED_BMQ
   scripts/config --disable CONFIG_SCHED_PDS
 
-  echo -e "\033[0;31mDisabling GCC Plugins..."
-  scripts/config --disable CONFIG_GCC_PLUGINS
-
   echo -e "\033[0;32mEnabling Graysky2 x86-64-v3..."
   scripts/config --disable CONFIG_GENERIC_CPU
   scripts/config --enable CONFIG_GENERIC_CPU3
 
-  echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
-  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
-  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
+#  echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
+#  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
+#  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
   echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
   scripts/config --disable CONFIG_LTO_NONE
@@ -165,6 +158,9 @@ prepare() {
   echo -e "\033[0;31mDisabling Open-Channel SSD NVM..." # delete since 5.15
   scripts/config --disable CONFIG_NVM
 
+  echo -e "\033[0;31mRemove CleanCache..." #https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=612de5464f4077e4918eed99f4b31cfbd0781c69
+  scripts/config --disable CONFIG_CLEANCACHE
+
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
   echo -e "\033[0;31mDisabling TCP_CONG_CUBIC..."
@@ -177,6 +173,7 @@ prepare() {
   scripts/config --enable CONFIG_TCP_CONG_BBR2
   scripts/config --enable CONFIG_DEFAULT_BBR2
   scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr2
+
   echo -e "\033[0;32mSetting performance governor..."
   scripts/config --disable CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL
   scripts/config --enable CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE
@@ -192,14 +189,6 @@ prepare() {
   echo -e "\033[0;32mEnabling standard ZSTD module compression ratio..."
   scripts/config --set-val CONFIG_MODULE_COMPRESS_ZSTD_LEVEL 19
   scripts/config --disable CONFIG_MODULE_COMPRESS_ZSTD_ULTRA
-
-#  echo -e "\033[0;32mEnable PREEMPT..."        Not for server use
-#  scripts/config --disable CONFIG_PREEMPT_NONE
-#  scripts/config --disable CONFIG_PREEMPT_VOLUNTARY
-#  scripts/config --enable CONFIG_PREEMPT
-#  scripts/config --enable CONFIG_PREEMPT_COUNT
-#  scripts/config --enable CONFIG_PREEMPTION
-#  scripts/config --enable CONFIG_PREEMPT_DYNAMIC
 
   echo -e "\033[0;32mEnabling multigenerational LRU..."
   scripts/config --enable CONFIG_HAVE_ARCH_PARENT_PMD_YOUNG
@@ -272,10 +261,10 @@ _package-headers() {
   install -Dt "$builddir/drivers/md" -m644 drivers/md/*.h
   install -Dt "$builddir/net/mac80211" -m644 net/mac80211/*.h
 
-  # http://bugs.archlinux.org/task/13146
+  # https://bugs.archlinux.org/task/13146
   install -Dt "$builddir/drivers/media/i2c" -m644 drivers/media/i2c/msp3400-driver.h
 
-  # http://bugs.archlinux.org/task/20402
+  # https://bugs.archlinux.org/task/20402
   install -Dt "$builddir/drivers/media/usb/dvb-usb" -m644 drivers/media/usb/dvb-usb/*.h
   install -Dt "$builddir/drivers/media/dvb-frontends" -m644 drivers/media/dvb-frontends/*.h
   install -Dt "$builddir/drivers/media/tuners" -m644 drivers/media/tuners/*.h
