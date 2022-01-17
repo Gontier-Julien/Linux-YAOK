@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.15
-_minor=12
+_minor=14
 pkgbase=linux-lts-yaok-v3
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -20,9 +20,10 @@ source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   'https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15%2B.patch'
   "https://gitlab.com/alfredchen/projectc/-/raw/master/5.15/prjc_v5.15-r1.patch"
+  "${_patchsource}/prjc-fixes-v5/0001-prjc-fixes.patch"
   #"${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
-  "${_xanpatch}/xanmod/0005-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
-  "${_xanpatch}/xanmod/0009-XANMOD-scripts-disable-the-localversion-tag-of-a-git.patch"
+  "${_xanpatch}/xanmod/0004-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
+  "${_xanpatch}/xanmod/0008-XANMOD-scripts-disable-the-localversion-tag-of-a-git.patch"
   "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
   "${_patchsource}/clearlinux-patches-v2/0001-clearlinux-patches.patch"
   "${_patchsource}/lrng-upstream-patches-v2/0001-lrng-patches.patch"
@@ -38,12 +39,17 @@ source=(
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
 )
-sha256sums=('7de919772b62647591527e904e3b3583783381a29d812404f58a222484e751a0' # Linux 5.15.12
+validpgpkeys=(
+  'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
+  '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
+)
+sha256sums=('2df2b4e71b5b2f25b201ba5a3d42bdf676b1deaae2fb44c14a1d8a33c9f76a4d' # Linux 5.15.14
             '380bcf40cc8396e97bd1d7f2577ab2ace51885858d3f155b1fb2dd5469efd00d' # Graysky2 patch for x86-64-v3
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
+            '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
-            'a1a910a881c7f00df748fd2893ab5a768e36fe57b7c1d8865ada0ec55a062e44' # Xanmod patch 1
-            'c62d32da55479d791de7c8426fe3202faedc3294cafc05dd478f6d7e9cc0cdd3' # Xanmod patch 2
+            '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
+            'e32ab08b706bf3d6f91fe0cfe8e0fbc0c08273defa94b2a2eeae61d118523da9' # Xanmod patch 2
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
             '61752017bd0b9cfb2b2aded6186638b37a764f1df9614999d2ecbc5b3a9073a6' # Clear-Linux patch
             '072d3a7061582d5f43f83e312fb473285068d49219d0dfefc8aee3033de9414a' # LRNG patch
@@ -133,9 +139,9 @@ prepare() {
   echo -e "\033[0;32mEnabling winesync support..."
   scripts/config --module CONFIG_WINESYNC
 
-  echo -e "\033[0;32mEnabling highest ZSTD compression ratio..."
+  echo -e "\033[0;32mEnabling standard ZSTD compression ratio..."
   scripts/config --set-val CONFIG_KERNEL_ZSTD_LEVEL 19
-  scripts/config --enable CONFIG_KERNEL_ZSTD_LEVEL_ULTRA
+  scripts/config --disable CONFIG_KERNEL_ZSTD_LEVEL_ULTRA
   echo -e "\033[0;32mEnabling standard ZSTD module compression ratio..."
   scripts/config --set-val CONFIG_MODULE_COMPRESS_ZSTD_LEVEL 19
   scripts/config --disable CONFIG_MODULE_COMPRESS_ZSTD_ULTRA
@@ -177,6 +183,9 @@ prepare() {
 
   echo -e "\033[0;31mDisabling some additional debuging..."
   scripts/config --disable CONFIG_DEBUG_BUGVERBOSE
+
+  echo -e "\033[0;31mRemove CleanCache..." #https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=612de5464f4077e4918eed99f4b31cfbd0781c69
+  scripts/config --disable CONFIG_CLEANCACHE
 }
 
 build() {
@@ -238,10 +247,10 @@ _package-headers() {
   install -Dt "$builddir/drivers/md" -m644 drivers/md/*.h
   install -Dt "$builddir/net/mac80211" -m644 net/mac80211/*.h
 
-  # http://bugs.archlinux.org/task/13146
+  # https://bugs.archlinux.org/task/13146
   install -Dt "$builddir/drivers/media/i2c" -m644 drivers/media/i2c/msp3400-driver.h
 
-  # http://bugs.archlinux.org/task/20402
+  # https://bugs.archlinux.org/task/20402
   install -Dt "$builddir/drivers/media/usb/dvb-usb" -m644 drivers/media/usb/dvb-usb/*.h
   install -Dt "$builddir/drivers/media/dvb-frontends" -m644 drivers/media/dvb-frontends/*.h
   install -Dt "$builddir/drivers/media/tuners" -m644 drivers/media/tuners/*.h
