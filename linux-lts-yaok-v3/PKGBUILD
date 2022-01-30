@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.15
-_minor=16
+_minor=18
 pkgbase=linux-lts-yaok-v3
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -44,7 +44,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('ba0a0a14e89f8212bf3effa3e3118da9939e445bab52a6544f9f98a272ff1794' # Linux 5.15.16
+sha256sums=('21dd70e84d776a3403836d435bc523059a43f5bce72c75728981126dd9786c5e' # Linux 5.15.18
             '380bcf40cc8396e97bd1d7f2577ab2ace51885858d3f155b1fb2dd5469efd00d' # Graysky2 patch for x86-64-v3
             '768239d739180c0199545b5c5cf2d78de6261aec769008e6a2b7e97c7477b756' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
