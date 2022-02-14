@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.10
-_minor=90
+_minor=100
 pkgbase=linux-lts-server-yaok-v3
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -20,8 +20,7 @@ _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.8-5.14.patch"
-  "https://gitlab.com/alfredchen/projectc/-/raw/master/5.10-lts/prjc_v5.10-lts-r3.patch"
-  "https://gitlab.com/alfredchen/linux-prjc/uploads/eab8442acae2744f531fda205d8c8c53/prjc-20211115-update-sched_post_fork__-signature.patch" # backport temporary fix
+  "https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.10/0009-prjc_v5.10-r3.patch"
   "https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15/spectre-patches/0001-spectre-patches.patch" # backport
   #"${_archpatch}/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0006-dcache-cache_pressure-50-decreases-the-rate-at-which.patch"
@@ -53,10 +52,9 @@ source=(
   "${_patchsource}/zstd-upstream-patches/0001-zstd-upstream-patches.patch"
   "config"         # the main kernel config file
 )
-sha256sums=('945e4264c014a3d9dfc0a4639309dd1ec2fb545416556421f931b95da78c2725' # Linux 5.10.90
+sha256sums=('d56965afc9b6a3d26d53db40ccd37fd9d15f2ca6bfd54ef6f0f8b6e92c170999' # Linux 5.10.100
             '2f99d9e37f372925e054115bfead4723a328ffbdb7bf958753aab2ac48dc5673' # Graysky2 patch for x86-64-v3
-            'f4562c31658d7e18dbbfc3220bc5350fc896e6d338714420533a3df8642778d1' # BMQ patch
-            '6fdc2a8e55676c87040beb2c13ed6da5dc45984e1e02d1541a785075a98985ef' # backport temporary fix
+            'b9da77449157c36193d4dc8a43f4cebe7f13d9f6bbcdadbcbf1e61da1f5f887e' # BMQ patch
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             #'96a72e1652314215da7140956c3abcf495cafd00811eda3cf4ce03ec5f791f1e' # arch patch zen
             'a819d178c0ad8d626743ba3062774b4463b8d9e43fa8fcddcc729c88d25c1905' # Xanmod patch 1
