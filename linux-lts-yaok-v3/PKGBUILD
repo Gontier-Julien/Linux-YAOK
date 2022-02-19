@@ -47,6 +47,7 @@ validpgpkeys=(
 sha256sums=('f496eb03c88731540d483837f919c083148875a7b400468237f0217b5e5ca97f' # Linux 5.15.24
             '380bcf40cc8396e97bd1d7f2577ab2ace51885858d3f155b1fb2dd5469efd00d' # Graysky2 patch for x86-64-v3
             'b9da77449157c36193d4dc8a43f4cebe7f13d9f6bbcdadbcbf1e61da1f5f887e' # BMQ patch
+            '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
             'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
