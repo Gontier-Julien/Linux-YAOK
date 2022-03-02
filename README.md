@@ -9,7 +9,6 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 # Featury bits & pieces
 - Build with Clang/LLVM Thin-Lto
 - Dedicated Kernel for x86-64-v3 architectures
-- Dedicated Kernel for Home use and Server use
 - No OC, timer frequency is set at 250HZ base
 - BMQ CPU Scheduler
 - Build with -02
@@ -25,9 +24,9 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 Linux-YAOK follow a specific cylces of release and is tested before it is going in the repo.
 The kernel while always follow the Lts cycles.
 
-The home variant while be updated every 4 version, and the server variant every 10 versions.
+It while be updated every 5 versions.
 
-With my current setup it not possible for me to compile each kernel every time a new version is out
+With my current setup it not possible for me to compile each kernel every time a new version is out.
 
 <br/>
 
