@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 _major=5.15
-_minor=30
+_minor=32
 pkgbase=linux-lts-yaok
 pkgver=${_major}.${_minor}
 pkgrel=1
@@ -41,7 +41,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('254ea2fe08f0aa07e4f7fffe95d12463df7fa6ff8a9ba72f321da15e50fa7132' # Linux 5.15.30
+sha256sums=('1463cdfa223088610dd65d3eadeffa44ec49746091b8ae8ddac6f3070d17df86' # Linux 5.15.32
             '7859fe0537662304a62b8f9bf9f6aff201d27097753f9c61e368a7fd19cc55df' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
@@ -108,8 +108,14 @@ prepare() {
 #  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
   echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
-  scripts/config --disable CONFIG_LTO_NONE
-  scripts/config -e LTO_CLANG_THIN 
+  scripts/config --disable LTO_NONE \
+    --enable LTO \
+    --enable LTO_CLANG \
+    --enable ARCH_SUPPORTS_LTO_CLANG \
+    --enable ARCH_SUPPORTS_LTO_CLANG_THIN \
+    --enable HAS_LTO_CLANG \
+    --enable LTO_CLANG_THIN \
+    --enable HAVE_GCC_PLUGINS
 
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
