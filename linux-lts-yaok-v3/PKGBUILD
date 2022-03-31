@@ -18,7 +18,7 @@ _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/
 _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.15.y-xanmod"
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
-  'https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15-5.16.patch'
+  "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15-5.16.patch"
   "https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15/0009-prjc_v5.15-r1.patch"
   "${_patchsource}/prjc-fixes-v5/0001-prjc-fixes.patch"
   #"${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
@@ -33,7 +33,6 @@ source=(
   "${_patchsource}/fixes-miscellaneous-v9-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
-  "${_patchsource}/zstd-patches-v2/0001-zstd-patches.patch"
   "${_patchsource}/zstd-upstream-patches-v4-trunk/0001-zstd-upstream-patches.patch"
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
   "config"         # main kernel config
@@ -58,7 +57,6 @@ sha256sums=('1463cdfa223088610dd65d3eadeffa44ec49746091b8ae8ddac6f3070d17df86' #
             '3b04c66dc248f8b5a756f5670364cdd79f51e3b8990148313eb10d1c1aead6ab' # Fixes patch 4
             '5c3a57566f68f202c9ad219885fae6ab20946b54c575a2789f079edb22df3e03' # Fixes patch 5
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
-            '7abe8f3cf527b5988e613efe6b4565c2a8e45d0c2d03413d3b3cdbcfde6abd42' # Zstd patch
             'f26e08ff41dcbaf478adc8c69f73e5fb4f688102ea44684ad520db76c3b0e22a' # Upstream Zstd patch
             'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
             'SKIP') #config
@@ -142,13 +140,6 @@ prepare() {
   scripts/config --enable CONFIG_FUTEX2
   echo -e "\033[0;32mEnabling winesync support..."
   scripts/config --module CONFIG_WINESYNC
-
-  echo -e "\033[0;32mEnabling standard ZSTD compression ratio..."
-  scripts/config --set-val CONFIG_KERNEL_ZSTD_LEVEL 19
-  scripts/config --disable CONFIG_KERNEL_ZSTD_LEVEL_ULTRA
-  echo -e "\033[0;32mEnabling standard ZSTD module compression ratio..."
-  scripts/config --set-val CONFIG_MODULE_COMPRESS_ZSTD_LEVEL 19
-  scripts/config --disable CONFIG_MODULE_COMPRESS_ZSTD_ULTRA
 
   echo -e "\033[0;31mDisabling TCP_CONG_CUBIC..."
   scripts/config --module CONFIG_TCP_CONG_CUBIC
