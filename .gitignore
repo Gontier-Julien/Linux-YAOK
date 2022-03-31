@@ -8,3 +8,4 @@ linux-yaok.files
 linux-yaok.files.tar.zst
 repo.sh
 Linux-YAOK.tar.zst
+build.sh
