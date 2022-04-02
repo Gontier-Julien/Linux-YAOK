@@ -4,7 +4,7 @@ _major=5.15
 _minor=32
 pkgbase=linux-lts-yaok-v3
 pkgver=${_major}.${_minor}
-pkgrel=2
+pkgrel=3
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
 arch=(x86_64 x86_64_v3)
@@ -111,15 +111,10 @@ prepare() {
 #  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
 #  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
-  echo -e "\033[0;32mEnabling LLVM Thin-LTO..."
-  scripts/config --disable LTO_NONE \
-    --enable LTO \
-    --enable LTO_CLANG \
-    --enable ARCH_SUPPORTS_LTO_CLANG \
-    --enable ARCH_SUPPORTS_LTO_CLANG_THIN \
-    --enable HAS_LTO_CLANG \
-    --enable LTO_CLANG_THIN \
-    --enable HAVE_GCC_PLUGINS
+  echo -e "\033[0;32mEnabling LLVM FULL-LTO..."
+  scripts/config --enable LTO_CLANG_FULL
+  scripts/config --disable LTO_CLANG_THIN
+  scripts/config --disable LTO_NONE
 
   echo -e "\033[0;31mDisabling NUMA by default..."
   scripts/config --disable CONFIG_NUMA
