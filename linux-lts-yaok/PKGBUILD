@@ -1,15 +1,13 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
-_major=5.15
-_minor=32
 pkgbase=linux-lts-yaok
-pkgver=${_major}.${_minor}
-pkgrel=3
+pkgver=5.15.34
+pkgrel=1
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
 arch=(x86_64 x86_64_v3)
 license=(GPL2)
-makedepends=(bc kmod libelf pahole cpio perl tar xz 
+makedepends=(bc libelf pahole cpio perl tar xz 
              xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
              clang llvm lld)
 options=('!strip')
@@ -40,8 +38,8 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('1463cdfa223088610dd65d3eadeffa44ec49746091b8ae8ddac6f3070d17df86' # Linux 5.15.32
-            '7859fe0537662304a62b8f9bf9f6aff201d27097753f9c61e368a7fd19cc55df' # BMQ patch
+sha256sums=('a7514685392f0f89b337fa252a10a004c6a97d23e8d1126059c8e373398fdb69' # Linux 5.15.34
+            '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
@@ -60,6 +58,7 @@ sha256sums=('1463cdfa223088610dd65d3eadeffa44ec49746091b8ae8ddac6f3070d17df86' #
             'SKIP') #config
 
 BUILD_FLAGS=(
+  CC=clang CXX=clang++ LD=ld.lld
   LLVM=1
   LLVM_IAS=1
 )
@@ -87,14 +86,11 @@ prepare() {
 
   echo "Setting config..."
   cp ../config .config
-#  make prepare
+# make prepare
   make ${BUILD_FLAGS[*]} olddefconfig
 
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
-
-  # CONFIG_STACK_VALIDATION gives better stack traces. Also is enabled in all official kernel packages by Archlinux team
-  scripts/config --enable CONFIG_STACK_VALIDATION
 
   echo -e "\033[0;32mEnabling BMQ Scheduler..."
   scripts/config --enable CONFIG_SCHED_ALT
@@ -183,9 +179,8 @@ build() {
 _package() {
   pkgdesc="The $pkgdesc kernel and modules"
   depends=(coreutils kmod initramfs)
-  optdepends=('crda: to set the correct wireless channels of your country'
-              'linux-firmware: firmware images needed for some devices'
-              'usbctl: deny_new_usb control')
+  optdepends=('wireless-regdb: to set the correct wireless channels of your country'
+              'linux-firmware: firmware images needed for some devices')
   provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
 
   cd $_srcname
@@ -201,7 +196,8 @@ _package() {
   echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
 
   echo "Installing modules..."
-  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
+    DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
   # remove build and source links
   rm "$modulesdir"/{source,build}
@@ -209,6 +205,8 @@ _package() {
 
 _package-headers() {
   pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
+  depends=(clang llvm lld)
+  depends=(pahole)
 
   cd $_srcname
   local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
@@ -241,6 +239,9 @@ _package-headers() {
   install -Dt "$builddir/drivers/media/usb/dvb-usb" -m644 drivers/media/usb/dvb-usb/*.h
   install -Dt "$builddir/drivers/media/dvb-frontends" -m644 drivers/media/dvb-frontends/*.h
   install -Dt "$builddir/drivers/media/tuners" -m644 drivers/media/tuners/*.h
+
+  # https://bugs.archlinux.org/task/71392
+  install -Dt "$builddir/drivers/iio/common/hid-sensors" -m644 drivers/iio/common/hid-sensors/*.h
 
   echo "Installing KConfig files..."
   find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
@@ -285,8 +286,7 @@ _package-headers() {
   ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 }
 
-pkgname=("$pkgbase" "$pkgbase-headers" )
-depends=(clang llvm lld)
+pkgname=("$pkgbase" "$pkgbase-headers")
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     $(declare -f "_package${_p#$pkgbase}")
