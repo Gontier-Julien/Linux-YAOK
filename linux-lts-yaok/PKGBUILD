@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok
-pkgver=5.15.34
+pkgver=5.15.36
 pkgrel=1
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -38,7 +38,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('a7514685392f0f89b337fa252a10a004c6a97d23e8d1126059c8e373398fdb69' # Linux 5.15.34
+sha256sums=('36345db17a937c197c72ca9c7f34c262b3a12f927c237ff7770193014e29c690' # Linux 5.15.36
             '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
@@ -96,10 +96,6 @@ prepare() {
   scripts/config --enable CONFIG_SCHED_ALT
   scripts/config --enable CONFIG_SCHED_BMQ
   scripts/config --disable CONFIG_SCHED_PDS
-
-#  echo -e "\033[0;32mEnabling KBUILD_CFLAGS -O3..."
-#  scripts/config --disable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
-#  scripts/config --enable CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
   echo -e "\033[0;32mEnabling LLVM FULL-LTO..."
   scripts/config --enable LTO_CLANG_FULL
