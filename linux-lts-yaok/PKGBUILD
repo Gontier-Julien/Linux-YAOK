@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok
-pkgver=5.15.36
+pkgver=5.15.38
 pkgrel=1
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -9,7 +9,7 @@ arch=(x86_64 x86_64_v3)
 license=(GPL2)
 makedepends=(bc libelf pahole cpio perl tar xz 
              xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
-             clang llvm lld)
+             clang llvm llvm-libs lld)
 options=('!strip')
 _srcname=linux-${pkgver}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15"
@@ -20,10 +20,10 @@ source=(
   "${_patchsource}/prjc-fixes-v5/0001-prjc-fixes.patch"
   #"${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0004-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
-  "${_patchsource}/bbr2-patches/0001-bbr2-5.15-introduce-BBRv2.patch"
   "${_patchsource}/clearlinux-patches-v2/0001-clearlinux-patches.patch"
   "${_patchsource}/intel-patches/0001-intel-patches.patch"
   "${_patchsource}/lrng-upstream-patches-v2/0001-lrng-patches.patch"
+  "${_patchsource}/fixes-miscellaneous-v9-sep/0001-net-sched-allow-configuring-cake-qdisc-as-default.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0008-nvme-don-t-memset-the-normal-read-write-command.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
@@ -38,24 +38,24 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('36345db17a937c197c72ca9c7f34c262b3a12f927c237ff7770193014e29c690' # Linux 5.15.36
+sha256sums=('7e415d420990b88bfec038d56e920b9b28f99d54f31dbbd7aa82e66acca11052' # Linux 5.15.38
             '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
-            'b45ab5ea4b37c980d44fa6ace284aa04aee36c61374ec2145c0cd73a791df42a' # BBR2 patch
             '61752017bd0b9cfb2b2aded6186638b37a764f1df9614999d2ecbc5b3a9073a6' # Clear-Linux patch
             '0c4fbcf7fc0764cc3b667faf210b8f6eba4d11e8b02522bd7fa3f9b21de73029' # Intel patch
             '072d3a7061582d5f43f83e312fb473285068d49219d0dfefc8aee3033de9414a' # LRNG patch
-            'eeb5ade5307abd99d8a007cd0cab09053b68a7096119d6e1453fa3bfa733e067' # Fixes patch 1
-            '3005924973226e380e44951a82c978a8b3b6dd55a0558250f6682580047a3215' # Fixes patch 2
-            '84b3cf5400ece652cc5ac237fca3eed1f86c714be1f666e5958a6d4cdaf49f02' # Fixes patch 3
-            '3b04c66dc248f8b5a756f5670364cdd79f51e3b8990148313eb10d1c1aead6ab' # Fixes patch 4
-            '5c3a57566f68f202c9ad219885fae6ab20946b54c575a2789f079edb22df3e03' # Fixes patch 5
+            'ff123d6d15d1108e0c9e1c6bd78646b7e861854397f106d094453c96ff009591' # Fixes patch 1
+            'eeb5ade5307abd99d8a007cd0cab09053b68a7096119d6e1453fa3bfa733e067' # Fixes patch 2
+            '3005924973226e380e44951a82c978a8b3b6dd55a0558250f6682580047a3215' # Fixes patch 3
+            '84b3cf5400ece652cc5ac237fca3eed1f86c714be1f666e5958a6d4cdaf49f02' # Fixes patch 4
+            '3b04c66dc248f8b5a756f5670364cdd79f51e3b8990148313eb10d1c1aead6ab' # Fixes patch 5
+            '5c3a57566f68f202c9ad219885fae6ab20946b54c575a2789f079edb22df3e03' # Fixes patch 6
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             'f26e08ff41dcbaf478adc8c69f73e5fb4f688102ea44684ad520db76c3b0e22a' # Upstream Zstd patch
             'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
-            'SKIP') #config
+            '40e9836a0ef2835e4bfc7bc275e5ce4d7f17a2f01e83eaff63f92898ea67327d') #config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
@@ -133,7 +133,7 @@ prepare() {
   scripts/config --enable CONFIG_DEFAULT_BBR2
   scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr2
   echo -e "\033[0;32mSet CAKE as the default queuing..."
-  scripts/config --set-str CONFIG_DEFAULT_NET_SCH cake
+  scripts/config --enable DEFAULT_CAKE
 
   echo -e "\033[0;32mSetting performance governor..."
   scripts/config --disable CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL
@@ -201,8 +201,7 @@ _package() {
 
 _package-headers() {
   pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
-  depends=(clang llvm lld)
-  depends=(pahole)
+  depends=(clang llvm llvm-libs lld pahole)
 
   cd $_srcname
   local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
