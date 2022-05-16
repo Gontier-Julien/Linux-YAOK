@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok
-pkgver=5.15.38
+pkgver=5.15.40
 pkgrel=1
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -38,7 +38,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('7e415d420990b88bfec038d56e920b9b28f99d54f31dbbd7aa82e66acca11052' # Linux 5.15.38
+sha256sums=('c787f7eecbabbfca4dd3224827292a5fb98e3370c6e04b859714fba25bb8c33b' # Linux 5.15.40
             '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
             #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
@@ -128,10 +128,10 @@ prepare() {
   echo -e "\033[0;31mDisabling TCP_CONG_RENO..."
   scripts/config --module CONFIG_TCP_CONG_RENO
   scripts/config --disable CONFIG_DEFAULT_RENO
-  echo -e "\033[0;32mEnabling TCP_CONG_BBR2..."
-  scripts/config --enable CONFIG_TCP_CONG_BBR2
-  scripts/config --enable CONFIG_DEFAULT_BBR2
-  scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr2
+  echo -e "\033[0;32mEnabling TCP_CONG_BBR..."
+  scripts/config --enable CONFIG_TCP_CONG_BBR
+  scripts/config --enable CONFIG_DEFAULT_BBR
+  scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr
   echo -e "\033[0;32mSet CAKE as the default queuing..."
   scripts/config --enable DEFAULT_CAKE
 

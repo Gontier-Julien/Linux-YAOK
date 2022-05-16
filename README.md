@@ -14,8 +14,7 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - Build with -02
 - PREEMPT enabled by default
 - Multigenerational LRU
-- BBRv2 tcp_congestion_control
-- FUTEX, FUTEX2, WINESYNC patch-set
+- FUTEX, FUTEX2 enabled  by default
 - Latest & improved ZSTD patch-set
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
@@ -32,7 +31,7 @@ With my current setup it not possible for me to compile each kernel every time a
 
 **But if you're on Arch Linux don't use the Lts kernel (probably a "I use Arch BTW" elite user)**
 
-Shhhh *place finger on the mouth*, people who use Arch Linux, also want to have a kernel that is not always bleading edge.
+All people who use Arch Linux, also want to have a kernel that is not always bleading edge.
 
 I also recommend to take a small look at the [Wiki](https://github.com/Gontier-Julien/Linux-YAOK/wiki)
 
