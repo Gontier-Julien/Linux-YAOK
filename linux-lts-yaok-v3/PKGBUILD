@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=5.15.40
+pkgver=5.15.44
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -13,15 +13,15 @@ makedepends=(bc libelf pahole cpio perl tar xz
 options=('!strip')
 _srcname=linux-${pkgver}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15"
+_frogpatch="https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15"
 _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.15.y-xanmod"
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15-5.16.patch"
-  "https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15/0009-prjc_v5.15-r1.patch"
+  "${_frogpatch}/0009-prjc_v5.15-r1.patch"
   "${_patchsource}/prjc-fixes-v5/0001-prjc-fixes.patch"
-  #"${_patchsource}/arch-patches/0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch"
   "${_xanpatch}/xanmod/0004-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
-  "${_patchsource}/clearlinux-patches-v2/0001-clearlinux-patches.patch"
+  "${_frogpatch}/0002-clear-patches.patch"
   "${_patchsource}/intel-patches/0001-intel-patches.patch"
   "${_patchsource}/lrng-upstream-patches-v2/0001-lrng-patches.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0001-net-sched-allow-configuring-cake-qdisc-as-default.patch"
@@ -39,13 +39,12 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('c787f7eecbabbfca4dd3224827292a5fb98e3370c6e04b859714fba25bb8c33b' # Linux 5.15.40
+sha256sums=('9bfabc38e56758bd0cfe22715a3f9a74cdf4a8870f3b150a03d2ffda29f832dc' # Linux 5.15.44
             '2893ca70c1812f98cbf1ea1ed0abac7b70c91b21f07c4f6c1816a769bcc34909' # Graysky2 patch for x86-64-v3
             '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
-            #'a19c0e3da9694764b15ce9d0af8cc2a4a53eed98f35b7e3324508f26f9deec4c' # Arch patch
             '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
-            '61752017bd0b9cfb2b2aded6186638b37a764f1df9614999d2ecbc5b3a9073a6' # Clear-Linux patch
+            '35a7cde86fb94939c0f25a62b8c47f3de0dbd3c65f876f460b263181b3e92fc0' # Clear-Linux patch
             '0c4fbcf7fc0764cc3b667faf210b8f6eba4d11e8b02522bd7fa3f9b21de73029' # Intel patch
             '072d3a7061582d5f43f83e312fb473285068d49219d0dfefc8aee3033de9414a' # LRNG patch
             'ff123d6d15d1108e0c9e1c6bd78646b7e861854397f106d094453c96ff009591' # Fixes patch 1
