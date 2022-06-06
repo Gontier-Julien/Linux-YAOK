@@ -22,7 +22,6 @@ source=(
   "${_xanpatch}/xanmod/0004-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_frogpatch}/0002-clear-patches.patch"
   "${_patchsource}/intel-patches/0001-intel-patches.patch"
-  "${_patchsource}/lrng-upstream-patches-v2/0001-lrng-patches.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0001-net-sched-allow-configuring-cake-qdisc-as-default.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0008-nvme-don-t-memset-the-normal-read-write-command.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
@@ -44,7 +43,6 @@ sha256sums=('9bfabc38e56758bd0cfe22715a3f9a74cdf4a8870f3b150a03d2ffda29f832dc' #
             '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
             '35a7cde86fb94939c0f25a62b8c47f3de0dbd3c65f876f460b263181b3e92fc0' # Clear-Linux patch
             '0c4fbcf7fc0764cc3b667faf210b8f6eba4d11e8b02522bd7fa3f9b21de73029' # Intel patch
-            '072d3a7061582d5f43f83e312fb473285068d49219d0dfefc8aee3033de9414a' # LRNG patch
             'ff123d6d15d1108e0c9e1c6bd78646b7e861854397f106d094453c96ff009591' # Fixes patch 1
             'eeb5ade5307abd99d8a007cd0cab09053b68a7096119d6e1453fa3bfa733e067' # Fixes patch 2
             '3005924973226e380e44951a82c978a8b3b6dd55a0558250f6682580047a3215' # Fixes patch 3
@@ -54,7 +52,7 @@ sha256sums=('9bfabc38e56758bd0cfe22715a3f9a74cdf4a8870f3b150a03d2ffda29f832dc' #
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             'f26e08ff41dcbaf478adc8c69f73e5fb4f688102ea44684ad520db76c3b0e22a' # Upstream Zstd patch
             'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
-            '40e9836a0ef2835e4bfc7bc275e5ce4d7f17a2f01e83eaff63f92898ea67327d') #config
+            'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855') #config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
@@ -150,14 +148,6 @@ prepare() {
   scripts/config --enable CONFIG_PREEMPT_COUNT
   scripts/config --enable CONFIG_PREEMPTION
   scripts/config --enable CONFIG_PREEMPT_DYNAMIC
-
-  echo -e "\033[0;32mEnabling multigenerational LRU..."
-  scripts/config --enable CONFIG_HAVE_ARCH_PARENT_PMD_YOUNG
-  scripts/config --enable CONFIG_LRU_GEN
-  scripts/config --set-val CONFIG_NR_LRU_GENS 7
-  scripts/config --set-val CONFIG_TIERS_PER_GEN 4
-  scripts/config --enable CONFIG_LRU_GEN_ENABLED
-  scripts/config --disable CONFIG_LRU_GEN_STATS
 
   echo -e "\033[0;31mDisabling some additional debuging..."
   scripts/config --disable CONFIG_DEBUG_BUGVERBOSE
