@@ -54,7 +54,7 @@ sha256sums=('9bfabc38e56758bd0cfe22715a3f9a74cdf4a8870f3b150a03d2ffda29f832dc' #
             '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
             'f26e08ff41dcbaf478adc8c69f73e5fb4f688102ea44684ad520db76c3b0e22a' # Upstream Zstd patch
             'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
-            'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855') #config
+            'ba2ea2a087fd6c84603e64cc30ce69d3f90fa28522223fd4ffd1dbb3fa678d40') #config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
