@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=5.15.46
+pkgver=5.15.48
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -38,7 +38,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('eb455746779bb79533e6c1afcd0d5e8ad2295898b786f47d718f087a3d07376b' # Linux 5.15.46
+sha256sums=('19f0075d1b94d6874a2af7127a59b6b6c423fc7d4a883a51415543e7ec1be2a6' # Linux 5.15.48
             '2893ca70c1812f98cbf1ea1ed0abac7b70c91b21f07c4f6c1816a769bcc34909' # Graysky2 patch for x86-64-v3
             '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
             '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
