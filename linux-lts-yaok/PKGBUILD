@@ -1,4 +1,4 @@
-# Maintainer: gontier-julien <gontierjulien68@gmail.com>
+  # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok
 pkgver=5.15.56
@@ -26,7 +26,6 @@ source=(
   "${_patchsource}/fixes-miscellaneous-v9-sep/0008-nvme-don-t-memset-the-normal-read-write-command.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
-  "${_patchsource}/fixes-miscellaneous-v9-sep/0011-mm-Don-t-stop-kswapd-on-a-per-node-basis-when-there-.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
   "${_patchsource}/zstd-upstream-patches-v4-trunk/0001-zstd-upstream-patches.patch"
@@ -37,22 +36,21 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-sha256sums=('e9a6bb3437f1497b1c74841ebf70d5b96f915d6ac767b5ba3d8d820dd89b8223' # Linux 5.15.56
-            '930996cdd9b63e3456cc49da4015631717c1c2ec41f879b25a9100e95e0b38fb' # BMQ patch
-            '751c01b80c77e6228788555fd8d35a7ed1aead07cac558feaf0f40f8b70621dd' # BMQ fix (merge request)
-            '90763fdd59e518e5301d4be930c55c9ce4ab2205b0511b08ea39ea375fd900e8' # Xanmod patch 1
-            '35a7cde86fb94939c0f25a62b8c47f3de0dbd3c65f876f460b263181b3e92fc0' # Clear-Linux patch
-            '0c4fbcf7fc0764cc3b667faf210b8f6eba4d11e8b02522bd7fa3f9b21de73029' # Intel patch
-            'ff123d6d15d1108e0c9e1c6bd78646b7e861854397f106d094453c96ff009591' # Fixes patch 1
-            'eeb5ade5307abd99d8a007cd0cab09053b68a7096119d6e1453fa3bfa733e067' # Fixes patch 2
-            '3005924973226e380e44951a82c978a8b3b6dd55a0558250f6682580047a3215' # Fixes patch 3
-            '84b3cf5400ece652cc5ac237fca3eed1f86c714be1f666e5958a6d4cdaf49f02' # Fixes patch 4
-            '3b04c66dc248f8b5a756f5670364cdd79f51e3b8990148313eb10d1c1aead6ab' # Fixes patch 5
-            '5c3a57566f68f202c9ad219885fae6ab20946b54c575a2789f079edb22df3e03' # Fixes patch 6
-            '902c3dda6ab6e3907b6bd35b450714d8c2db5d112fa245f442a96880da815d96' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
-            'f26e08ff41dcbaf478adc8c69f73e5fb4f688102ea44684ad520db76c3b0e22a' # Upstream Zstd patch
-            'b9a551e09a571db677f90b55badd8e20dc743c4c887df64812dde3fc0eaf2e67' # Futex2 patch
-            'ba2ea2a087fd6c84603e64cc30ce69d3f90fa28522223fd4ffd1dbb3fa678d40') #config
+b2sums=('6710a46afe184d08d108bd199d96799e215cacf19ee22999203fe751fd2179888f2b581b83ece86aab6fcb4e2190f38dd67e064ba4d57b9d45a04355bd6fe008' # Linux 5.15.56
+        'dbd0bccd37168157eab634fc7046525e5f08c233e98ec374d449fab2cfacb348b006e496f03d27e6821320a0cbe679c193739921f03d8d1d89027351559cd7e1' # BMQ patch
+        'db33e06682755507c39efe3afbc80f14369bfd3baba0845ac4b4b168e94246d5d62f8a9c119b7ca38a52b5d077a00e5164c305238449ca2981100f8d03b4b5c8' # BMQ fix (merge request)
+        '87a7fcb83a4c1bfceb7488d6892f2cd2b9fc0dc52fe34918e1d6324a790f667d5facab34f34316fb979c7ba311159e886d4f835544eacbc8c47a640b117d1cb4' # Xanmod patch
+        'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
+        'dc7c45d57d50c4b019cb2fd5bf3d4ec019a7d3dd4a4e62bef324f75319d7bd9ed4c7faf96941d4f85c3504352b403fa5696c34878df08c62cbb17927648e0900' # Intel patch
+        '2904985e13356d1bb81422c313fa6b0b8d0285d4cc1506b7d7efd7c8677d482894d776c3441061b22162887e81be64f67c1585f1ca2b4a4870e19f3dc1cfd96a' # Fixes patch 1
+        '9734cebd522733925ed3e19598f67a64b904646037a98ed5fd1665180c7dbd918447b10dd02b769ce3a100d4e1960e63179402ea78a32c1eff296238a6adc7f5' # Fixes patch 2
+        '2fdb5d2a19a7dadffb1c9f0c8087412cd06e806ed7a71c471f4dc59e33f6d0f84afee0a32dea8193c4a92238bbd6bafb65a79f12188f29fa0076a3dfd24cb975' # Fixes patch 3
+        'c5bcc441fe36a02c713f08ff0036679c469af196a23a899094afca99edfd7e7f531a3106731a2fae23e8725d21086e4442c1d762b8e79d32dce5a901c42f40d8' # Fixes patch 4
+        '512c38c85a729dda91933fb13dcd55f12407e7afbbe6475f0a1b674161b247bf3578d2b48ff6dad43533a83501996afdaac8b028ca36a1513e5b17cc9c32463a' # Fixes patch 5
+        '7973116c2d8735bae92436356322679cb518820e2e7fea267e85bcc2bd8bc594f489b9b7396a8e811d4ef9e87ea3731e45b027cd7ede23565ef55f35f8d6cff1' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
+        '0b9f99bdd1b493f9b33394fba180a45f9d32a6b63c96729af01c0453316eb75d11ece29c2286405324878a4e357795753a2c7521d118d9b03fc0f7f762af8861' # Upstream Zstd patch
+        '305b6f6ecf859476ff745677e32163d4159dfea8269558e3a86fbbfafd08a8dc5b1b02c8ec3a3d10c61b5d1ad6bf798ee34dccb10ac1e43ebe205adefd6ab9ef' # Futex2 patch
+        '5e6115acecd06f4cdcce79afd8ef12e892a19c61052fa0d1ea2d764285885e3b77ebdbdc5aa675b6f59a4227160101a383b45dec156bf01a8891884c162917ca') #config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
@@ -140,6 +138,9 @@ prepare() {
   scripts/config --disable CONFIG_CPU_FREQ_GOV_CONSERVATIVE
   scripts/config --disable CONFIG_CPU_FREQ_GOV_USERSPACE
   scripts/config --disable CONFIG_CPU_FREQ_GOV_SCHEDUTIL
+
+  echo -e "\033[0;31mDisabling Core Scheduling for SMT..."
+  scripts/config --disable CONFIG_SCHED_CORE
 
   echo -e "\033[0;32mEnabling PREEMPT..."
   scripts/config --disable CONFIG_PREEMPT_NONE
