@@ -13,7 +13,6 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - BMQ CPU Scheduler
 - Build with -02
 - PREEMPT enabled by default
-- FUTEX, FUTEX2 enabled  by default
 - Latest & improved ZSTD patch-set
 - Follow some Upstream Kernel changes
 - Removed some debug and logging options
