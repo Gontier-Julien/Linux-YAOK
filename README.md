@@ -10,12 +10,12 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - Build with Clang/LLVM Full-Lto
 - Dedicated Kernel for x86-64-v3 architectures
 - No OC, timer frequency is set at 250HZ base
-- BMQ CPU Scheduler
+- Tweaked default CFS CPU Scheduler
 - Build with -02
 - PREEMPT enabled by default
 - Latest & improved ZSTD patch-set
 - Follow some Upstream Kernel changes
-- Removed some debug and logging options
+- Removed a lot of debug and logging options
 
 <br/>
 Linux-YAOK follow a specific cylces of release and is tested before it is going in the repo.
@@ -79,10 +79,10 @@ Thanks to all those people that have made the kernel possible:
 
 Ptr1337 from the [CachyOs repo](https://github.com/cachyos/linux-cachyos) for the base PKGBUILD
 
-Alfred Chen for the [BMQ Scheduler](https://gitlab.com/alfredchen/projectc)
+SirLucjan for the main [patches](https://github.com/sirlucjan/kernel-patches)
 
-SirLucjan for many [patches](https://github.com/sirlucjan/kernel-patches)
+The Frogging-Family for their [patches](https://github.com/Frogging-Family/linux-tkg/tree/master/linux-tkg-patches)
 
-Linux Xanmod for some [patches](https://github.com/xanmod/linux-patches) too
+Linux Xanmod for some [patches](https://github.com/xanmod/linux-patches)
 
 And the [Linux Kernel Developers and Supporters](https://www.kernel.org/)

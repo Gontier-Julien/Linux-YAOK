@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=5.15.56
+pkgver=5.15.58
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -18,8 +18,7 @@ _xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15-5.16.patch"
-  "${_frogpatch}/0009-prjc_v5.15-r1.patch"
-  "${_patchsource}/prjc-fixes-v5/0001-prjc-fixes.patch"
+  "${_frogpatch}/0003-glitched-cfs-additions.patch"
   "${_xanpatch}/xanmod/0004-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_frogpatch}/0002-clear-patches.patch"
   "${_patchsource}/intel-patches/0001-intel-patches.patch"
@@ -37,10 +36,9 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-b2sums=('6710a46afe184d08d108bd199d96799e215cacf19ee22999203fe751fd2179888f2b581b83ece86aab6fcb4e2190f38dd67e064ba4d57b9d45a04355bd6fe008' # Linux 5.15.56
+b2sums=('0bf2596c9f7c7f112389d47de169c3399305f48241f36fe479d18b80d874d8ab90faf44b5bd6384f4dec2998c22a0ef365a84bbe917a1dcd55875a91399b101b' # Linux 5.15.58
         '2c63d377bbefbdda15f805bfb1ca24880a65d0c8760a27d2f7e354f551002cd165ddb16b827ce558bab0c042247b47eca4db263ba721353053706ba1819e7b99' # Graysky2 patch for x86-64-v3
-        'dbd0bccd37168157eab634fc7046525e5f08c233e98ec374d449fab2cfacb348b006e496f03d27e6821320a0cbe679c193739921f03d8d1d89027351559cd7e1' # BMQ patch
-        'db33e06682755507c39efe3afbc80f14369bfd3baba0845ac4b4b168e94246d5d62f8a9c119b7ca38a52b5d077a00e5164c305238449ca2981100f8d03b4b5c8' # BMQ fix (merge request)
+        '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
         '87a7fcb83a4c1bfceb7488d6892f2cd2b9fc0dc52fe34918e1d6324a790f667d5facab34f34316fb979c7ba311159e886d4f835544eacbc8c47a640b117d1cb4' # Xanmod patch
         'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
         'dc7c45d57d50c4b019cb2fd5bf3d4ec019a7d3dd4a4e62bef324f75319d7bd9ed4c7faf96941d4f85c3504352b403fa5696c34878df08c62cbb17927648e0900' # Intel patch
@@ -52,7 +50,7 @@ b2sums=('6710a46afe184d08d108bd199d96799e215cacf19ee22999203fe751fd2179888f2b581
         '7973116c2d8735bae92436356322679cb518820e2e7fea267e85bcc2bd8bc594f489b9b7396a8e811d4ef9e87ea3731e45b027cd7ede23565ef55f35f8d6cff1' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
         '0b9f99bdd1b493f9b33394fba180a45f9d32a6b63c96729af01c0453316eb75d11ece29c2286405324878a4e357795753a2c7521d118d9b03fc0f7f762af8861' # Upstream Zstd patch
         '305b6f6ecf859476ff745677e32163d4159dfea8269558e3a86fbbfafd08a8dc5b1b02c8ec3a3d10c61b5d1ad6bf798ee34dccb10ac1e43ebe205adefd6ab9ef' # Futex2 patch
-        '5e6115acecd06f4cdcce79afd8ef12e892a19c61052fa0d1ea2d764285885e3b77ebdbdc5aa675b6f59a4227160101a383b45dec156bf01a8891884c162917ca') #config
+        '9dd363cf319038d7634059e4fe452c138234c25abe4400f73508b246f6d9581fe4cc76d47762cb7091770d5e0ac5a247b1697668065753100f66bb3b362c48c6') #config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
@@ -89,10 +87,8 @@ prepare() {
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
 
-  echo -e "\033[0;32mEnabling BMQ Scheduler..."
-  scripts/config --enable CONFIG_SCHED_ALT
-  scripts/config --enable CONFIG_SCHED_BMQ
-  scripts/config --disable CONFIG_SCHED_PDS
+  echo -e "\033[0;32mEnabling Frog TKG CFS patch..."
+  scripts/config --enable CONFIG_ZENIFY
 
   echo -e "\033[0;32mEnabling Graysky2 x86-64-v3..."
   scripts/config --disable CONFIG_GENERIC_CPU
@@ -170,7 +166,7 @@ _package() {
   depends=(coreutils kmod initramfs)
   optdepends=('wireless-regdb: to set the correct wireless channels of your country'
               'linux-firmware: firmware images needed for some devices')
-  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE)
 
   cd $_srcname
   local kernver="$(<version)"
@@ -206,11 +202,11 @@ _package-headers() {
   install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
   cp -t "$builddir" -a scripts
 
-  # add objtool for external module building and enabled VALIDATION_STACK option
+  # required when STACK_VALIDATION is enabled
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
 
-  # add xfs and shmem for aufs building
-  mkdir -p "$builddir"/{fs/xfs,mm}
+  # required when DEBUG_INFO_BTF_MODULES is enabled
+  install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
 
   echo "Installing headers..."
   cp -t "$builddir" -a include
