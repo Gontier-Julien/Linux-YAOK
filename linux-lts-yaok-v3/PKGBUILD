@@ -107,17 +107,13 @@ prepare() {
   scripts/config --disable CONFIG_SECURITY_TOMOYO
   echo -e "\033[0;31mDisabling AppArmor..."
   scripts/config --disable CONFIG_SECURITY_APPARMOR
-  scripts/config --set-str CONFIG_LSM lockdown,yama,integrity
   echo -e "\033[0;31mDisabling YAMA..."
   scripts/config --disable CONFIG_SECURITY_YAMA
-  scripts/config --set-str CONFIG_LSM lockdown,integrity,apparmor
-  echo -e "\033[0;32mEnabling Fsync support..."
-  scripts/config --enable CONFIG_FUTEX
-  scripts/config --enable CONFIG_FUTEX_PI
+  echo -e "\033[0;31mSetting LSM accordingly..."
+  scripts/config --set-str CONFIG_LSM landlock,lockdown,integrity,bpf
+
   echo -e "\033[0;32mEnabling Futex2 support..."
   scripts/config --enable CONFIG_FUTEX2
-  echo -e "\033[0;32mEnabling winesync support..."
-  scripts/config --module CONFIG_WINESYNC
 
   echo -e "\033[0;31mDisabling TCP_CONG_CUBIC..."
   scripts/config --module CONFIG_TCP_CONG_CUBIC
@@ -129,6 +125,9 @@ prepare() {
   scripts/config --enable CONFIG_TCP_CONG_BBR
   scripts/config --enable CONFIG_DEFAULT_BBR
   scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr
+  echo -e "\033[0;32mSet CAKE as the default queuing..."
+  scripts/config --set-str DEFAULT_NET_SCH cake
+
   echo -e "\033[0;32mSetting performance governor..."
   scripts/config --disable CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL
   scripts/config --enable CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE
