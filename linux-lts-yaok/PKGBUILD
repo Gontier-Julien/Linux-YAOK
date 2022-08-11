@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok
-pkgver=5.15.58
+pkgver=5.15.60
 pkgrel=1
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -34,7 +34,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-b2sums=('0bf2596c9f7c7f112389d47de169c3399305f48241f36fe479d18b80d874d8ab90faf44b5bd6384f4dec2998c22a0ef365a84bbe917a1dcd55875a91399b101b' # Linux 5.15.58
+b2sums=('9c6dd581012cc21c26d2cf204eb92a2c28d9598bb8da1b884b6f78101b3b590c55f1b14d31aaf6b24e3b74aab3c2d00d632cc805d09ffb03de40ca89507a2c98' # Linux 5.15.60
         '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
         '87a7fcb83a4c1bfceb7488d6892f2cd2b9fc0dc52fe34918e1d6324a790f667d5facab34f34316fb979c7ba311159e886d4f835544eacbc8c47a640b117d1cb4' # Xanmod patch
         'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
@@ -197,7 +197,7 @@ _package-headers() {
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
 
   # required when DEBUG_INFO_BTF_MODULES is enabled
-  install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
+  #install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
 
   echo "Installing headers..."
   cp -t "$builddir" -a include
