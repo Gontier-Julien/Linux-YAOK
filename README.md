@@ -8,6 +8,7 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 
 # Featury bits & pieces
 - Build with Clang/LLVM Full-Lto
+- x86-64-v2 as the base Kernel architecture (~late/the end of this years (2022))
 - Dedicated Kernel for x86-64-v3 architectures
 - No OC, timer frequency is set at 250HZ base
 - Tweaked default CFS CPU Scheduler
@@ -69,6 +70,7 @@ Subdirectories of glibc-hwcaps directories, in priority order:
 
 # TODO
 
+- [ ] Switching the base architecture to x86-64-v2 (~late/the end of this years (2022))
 - [ ] Build server and official repo (partilly done)
 - [ ] Add builds for Debian
 
