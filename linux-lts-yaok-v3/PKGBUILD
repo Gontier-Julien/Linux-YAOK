@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=5.15.62
+pkgver=5.15.64
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -30,13 +30,13 @@ source=(
   "${_patchsource}/spectre-patches/0001-spectre-patches.patch"
   "${_patchsource}/zstd-upstream-patches-v4-trunk/0001-zstd-upstream-patches.patch"
   "${_patchsource}/futex2-patches/0001-futex2-resync-from-gitlab.collabora.com.patch"
-  "config"         # main kernel config
+  "config" # Kernel config
 )
 validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-b2sums=('c8059b8f1e0c3ac7f146e8174fe8768d4e4caaa0f21a043f02998d512b66a6e61ad970661784b354162eafdb8abd7f9301042e16ac278d525a232264283ee3af' # Linux 5.15.62
+b2sums=('05ffdbc86b13f9a892ac8d4969dad06f6da27981627a9591b6e0bc44b9460cc00aacbc573407ceff438448e02e2d14edd3eb920a0ded958bb6864bc4b7c988ed' # Linux 5.15.64
         '2c63d377bbefbdda15f805bfb1ca24880a65d0c8760a27d2f7e354f551002cd165ddb16b827ce558bab0c042247b47eca4db263ba721353053706ba1819e7b99' # Graysky2 patch for x86-64-v3
         '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
         '87a7fcb83a4c1bfceb7488d6892f2cd2b9fc0dc52fe34918e1d6324a790f667d5facab34f34316fb979c7ba311159e886d4f835544eacbc8c47a640b117d1cb4' # Xanmod patch
@@ -50,7 +50,7 @@ b2sums=('c8059b8f1e0c3ac7f146e8174fe8768d4e4caaa0f21a043f02998d512b66a6e61ad9706
         '7973116c2d8735bae92436356322679cb518820e2e7fea267e85bcc2bd8bc594f489b9b7396a8e811d4ef9e87ea3731e45b027cd7ede23565ef55f35f8d6cff1' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
         '0b9f99bdd1b493f9b33394fba180a45f9d32a6b63c96729af01c0453316eb75d11ece29c2286405324878a4e357795753a2c7521d118d9b03fc0f7f762af8861' # Upstream Zstd patch
         '305b6f6ecf859476ff745677e32163d4159dfea8269558e3a86fbbfafd08a8dc5b1b02c8ec3a3d10c61b5d1ad6bf798ee34dccb10ac1e43ebe205adefd6ab9ef' # Futex2 patch
-        '9be48deba5b0871fd63d20e6154f75cf50162ace1fa7b472ec46beeb85b3cc51f95fbfc1b3898255d2a437d253efb3ac4b825b214ad418a6e63ad02be397cbae') #config
+        '9be48deba5b0871fd63d20e6154f75cf50162ace1fa7b472ec46beeb85b3cc51f95fbfc1b3898255d2a437d253efb3ac4b825b214ad418a6e63ad02be397cbae') # Kernel config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
