@@ -34,6 +34,19 @@ All people who use Arch Linux, also want to have a kernel that is not always ble
 
 I also recommend to take a small look at the [Wiki](https://github.com/Gontier-Julien/Linux-YAOK/wiki)
 
+# Recommandations
+
+Add this to the end of your `sysctl.conf`:
+
+```
+vm.swappiness=10 (set it to 0 if you don't have a swap)
+vm.vfs_cache_pressure=50
+vm.dirty_ratio = 10
+vm.dirty_background_ratio = 3
+net.ipv4.tcp_fastopen = 3
+```
+This should improve performance further.
+
 # Repo
 
 Add this to the end of your `pacman.conf`:
@@ -84,7 +97,5 @@ Ptr1337 from the [CachyOs repo](https://github.com/cachyos/linux-cachyos) for th
 SirLucjan for the main [patches](https://github.com/sirlucjan/kernel-patches)
 
 The Frogging-Family for their [patches](https://github.com/Frogging-Family/linux-tkg/tree/master/linux-tkg-patches)
-
-Linux Xanmod for some [patches](https://github.com/xanmod/linux-patches)
 
 And the [Linux Kernel Developers and Supporters](https://www.kernel.org/)

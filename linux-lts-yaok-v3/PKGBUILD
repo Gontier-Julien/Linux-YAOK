@@ -14,15 +14,12 @@ options=('!strip')
 _srcname=linux-${pkgver}
 _patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15"
 _frogpatch="https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15"
-_xanpatch="https://raw.githubusercontent.com/xanmod/linux-patches/master/linux-5.15.y-xanmod/xanmod"
 source=(
   "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
   "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15-5.16.patch"
   "${_frogpatch}/0003-glitched-cfs-additions.patch"
-  "${_xanpatch}/0004-XANMOD-dcache-cache_pressure-50-decreases-the-rate-a.patch"
   "${_frogpatch}/0002-clear-patches.patch"
   "${_patchsource}/intel-patches/0001-intel-patches.patch"
-  "${_patchsource}/fixes-miscellaneous-v9-sep/0001-net-sched-allow-configuring-cake-qdisc-as-default.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0008-nvme-don-t-memset-the-normal-read-write-command.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
   "${_patchsource}/fixes-miscellaneous-v9-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
@@ -39,14 +36,12 @@ validpgpkeys=(
 b2sums=('05ffdbc86b13f9a892ac8d4969dad06f6da27981627a9591b6e0bc44b9460cc00aacbc573407ceff438448e02e2d14edd3eb920a0ded958bb6864bc4b7c988ed' # Linux 5.15.64
         '2c63d377bbefbdda15f805bfb1ca24880a65d0c8760a27d2f7e354f551002cd165ddb16b827ce558bab0c042247b47eca4db263ba721353053706ba1819e7b99' # Graysky2 patch for x86-64-v3
         '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
-        '87a7fcb83a4c1bfceb7488d6892f2cd2b9fc0dc52fe34918e1d6324a790f667d5facab34f34316fb979c7ba311159e886d4f835544eacbc8c47a640b117d1cb4' # Xanmod patch
         'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
         'dc7c45d57d50c4b019cb2fd5bf3d4ec019a7d3dd4a4e62bef324f75319d7bd9ed4c7faf96941d4f85c3504352b403fa5696c34878df08c62cbb17927648e0900' # Intel patch
-        '2904985e13356d1bb81422c313fa6b0b8d0285d4cc1506b7d7efd7c8677d482894d776c3441061b22162887e81be64f67c1585f1ca2b4a4870e19f3dc1cfd96a' # Fixes patch 1
-        '9734cebd522733925ed3e19598f67a64b904646037a98ed5fd1665180c7dbd918447b10dd02b769ce3a100d4e1960e63179402ea78a32c1eff296238a6adc7f5' # Fixes patch 2
-        '2fdb5d2a19a7dadffb1c9f0c8087412cd06e806ed7a71c471f4dc59e33f6d0f84afee0a32dea8193c4a92238bbd6bafb65a79f12188f29fa0076a3dfd24cb975' # Fixes patch 3
-        'c5bcc441fe36a02c713f08ff0036679c469af196a23a899094afca99edfd7e7f531a3106731a2fae23e8725d21086e4442c1d762b8e79d32dce5a901c42f40d8' # Fixes patch 4
-        '512c38c85a729dda91933fb13dcd55f12407e7afbbe6475f0a1b674161b247bf3578d2b48ff6dad43533a83501996afdaac8b028ca36a1513e5b17cc9c32463a' # Fixes patch 5
+        '9734cebd522733925ed3e19598f67a64b904646037a98ed5fd1665180c7dbd918447b10dd02b769ce3a100d4e1960e63179402ea78a32c1eff296238a6adc7f5' # Fixes patch 1
+        '2fdb5d2a19a7dadffb1c9f0c8087412cd06e806ed7a71c471f4dc59e33f6d0f84afee0a32dea8193c4a92238bbd6bafb65a79f12188f29fa0076a3dfd24cb975' # Fixes patch 2
+        'c5bcc441fe36a02c713f08ff0036679c469af196a23a899094afca99edfd7e7f531a3106731a2fae23e8725d21086e4442c1d762b8e79d32dce5a901c42f40d8' # Fixes patch 3
+        '512c38c85a729dda91933fb13dcd55f12407e7afbbe6475f0a1b674161b247bf3578d2b48ff6dad43533a83501996afdaac8b028ca36a1513e5b17cc9c32463a' # Fixes patch 4
         '7973116c2d8735bae92436356322679cb518820e2e7fea267e85bcc2bd8bc594f489b9b7396a8e811d4ef9e87ea3731e45b027cd7ede23565ef55f35f8d6cff1' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
         '0b9f99bdd1b493f9b33394fba180a45f9d32a6b63c96729af01c0453316eb75d11ece29c2286405324878a4e357795753a2c7521d118d9b03fc0f7f762af8861' # Upstream Zstd patch
         '305b6f6ecf859476ff745677e32163d4159dfea8269558e3a86fbbfafd08a8dc5b1b02c8ec3a3d10c61b5d1ad6bf798ee34dccb10ac1e43ebe205adefd6ab9ef' # Futex2 patch
