@@ -92,8 +92,6 @@ Subdirectories of glibc-hwcaps directories, in priority order:
 
 Thanks to all those people that have made the kernel possible:
 
-Ptr1337 from the [CachyOs repo](https://github.com/cachyos/linux-cachyos) for the base PKGBUILD
-
 SirLucjan for the main [patches](https://github.com/sirlucjan/kernel-patches)
 
 The Frogging-Family for their [patches](https://github.com/Frogging-Family/linux-tkg/tree/master/linux-tkg-patches)
