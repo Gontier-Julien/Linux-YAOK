@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=5.15.68
+pkgver=5.15.70
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://gitlab.com/alfredchen/linux-prjc'
@@ -33,7 +33,7 @@ validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
 )
-b2sums=('b97474cbe59654ac29a5f514c08a85db9ec330f58e08de53386d4fcedeab3845d6ea5b55e478a49fa94466eda296f80c7835704e2a13d1d56f6e38ed51953ca1' # Linux 5.15.68
+b2sums=('1ece12fb0cd1ec1a8951c5c30b6f6fb973caed6871ba86879103924e78065f15fbfd718a239cd58b4c97c2fe6ff90c26dd63c583d7ea83b63883c6bcc6d4cb38' # Linux 5.15.70
         '2c63d377bbefbdda15f805bfb1ca24880a65d0c8760a27d2f7e354f551002cd165ddb16b827ce558bab0c042247b47eca4db263ba721353053706ba1819e7b99' # Graysky2 patch for x86-64-v3
         '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
         'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
