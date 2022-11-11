@@ -22,7 +22,7 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 Linux-YAOK follow a specific cylces of release and is tested before it is going in the repo.
 The kernel while always follow the Lts cycles.
 
-It while be updated every 2 versions.
+It while be updated every 5 versions.
 
 With my current setup it not possible for me to compile each kernel every time a new version is out.
 
