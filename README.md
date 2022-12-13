@@ -35,7 +35,7 @@ I also recommend to take a small look at the [Wiki](https://github.com/Gontier-J
 
 # Recommandations
 
-Add this to the end of your `sysctl.conf`:
+**Add this to the end of your `sysctl.conf`:**
 
 ```
 vm.swappiness=10 (set it to 0 if you don't have a swap)
@@ -49,6 +49,13 @@ net.ipv4.tcp_congestion_control = bbr
 ```
 This should improve performance further.
 
+<br/>
+
+**Add this udev rule to save a bit of power.** *(~1.5 Watts per disk)*
+>/etc/udev/rules.d/hd_power_save.rules
+```
+ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="med_power_with_dipm"
+```
 # Repo
 
 Add this to the end of your `pacman.conf`:
