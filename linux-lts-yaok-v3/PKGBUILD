@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=5.15.80
+pkgver=5.15.85
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://cdn.kernel.org/'
@@ -12,7 +12,6 @@ makedepends=(bc libelf pahole cpio perl tar xz
              clang llvm llvm-libs lld)
 options=('!strip')
 _srcname=linux-${pkgver}
-#_patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/5.15"
 _frogpatch="https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15"
 _patchsource="https://raw.githubusercontent.com/CachyOS/kernel-patches/master/5.15" # Temporary until next LTS and/or self made patch
 source=(
@@ -23,10 +22,6 @@ source=(
   "${_patchsource}/AMD/0001-amd-c3.patch"
   "${_patchsource}/0001-intel-patches.patch"
   "${_patchsource}/0001-lqx-patches.patch"
-#  "${_patchsource}/0001-fixes-miscellaneous.patch"
-#  "${_patchsource}/fixes-miscellaneous-v9-sep/0009-mm-Stop-kswapd-early-when-nothing-s-waiting-for-it-t.patch"
-#  "${_patchsource}/fixes-miscellaneous-v9-sep/0010-mm-Fully-disable-watermark-boosting-when-it-isn-t-us.patch"
-#  "${_patchsource}/fixes-miscellaneous-v9-sep/0012-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/0001-spectre-patches.patch"
   "https://raw.githubusercontent.com/Frogging-Family/community-patches/master/linux517-tkg/lru_5.17.mypatch"
   "${_patchsource}/0001-zstd-upstream-patches.patch"
@@ -38,17 +33,13 @@ validpgpkeys=(
   '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
   'E27E5D8A3403A2EF66873BBCDEA66FF797772CDC' # Sasha Levin
 )
-b2sums=('750121c79c4c7a64735cfe9417eb15689d1e9796810c4ae1f56f2bba9ee5cf4c5c920fa8d8962b24c7ca016ca6e23749a5da86310e52e6710744f61f2704cf0f' # Linux 5.15.80
+b2sums=('481cea334dee4146d72704ecb88f654bd38ca62a5a28540f365a57f5cd522551c4b7f854c09380ec614098a9efa5dff4cef70c9cafe6277a410d3d2099eca1cc' # Linux 5.15.85
         '2c63d377bbefbdda15f805bfb1ca24880a65d0c8760a27d2f7e354f551002cd165ddb16b827ce558bab0c042247b47eca4db263ba721353053706ba1819e7b99' # Graysky2 patch for x86-64-v3
         '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
         'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
         '278869ec65025e3060dcb81f1a9019cf0f1ea610bf4ec6fd4913f6de09650d8acab57605f8fe2950880ea6fbf9dbdc9ad9b221056fea46905701145f4876a295' # AMD C3 patch
         'dc7c45d57d50c4b019cb2fd5bf3d4ec019a7d3dd4a4e62bef324f75319d7bd9ed4c7faf96941d4f85c3504352b403fa5696c34878df08c62cbb17927648e0900' # Intel patch
         'ac7cbdee62a8b5b685796cf5a60ba03c34515e4f2af859daf4d336d2bd7ed569b45fe8be09c1b5153830b3aa4a7cd7c71c81724c7d2c53fa91a01f322f5647c1' # MSR patch
-#        '7fbda3cb68906757cb55b2afe025193d073362cfa5e5e70c0e5b524d4ea1a49580af067d23165da230292be83df0695333fee2e30ba8a780adbae923f5b1bfe2' # Fixes patch 
-#        '2fdb5d2a19a7dadffb1c9f0c8087412cd06e806ed7a71c471f4dc59e33f6d0f84afee0a32dea8193c4a92238bbd6bafb65a79f12188f29fa0076a3dfd24cb975' # Fixes patch 1
-#        'c5bcc441fe36a02c713f08ff0036679c469af196a23a899094afca99edfd7e7f531a3106731a2fae23e8725d21086e4442c1d762b8e79d32dce5a901c42f40d8' # Fixes patch 2
-#        '512c38c85a729dda91933fb13dcd55f12407e7afbbe6475f0a1b674161b247bf3578d2b48ff6dad43533a83501996afdaac8b028ca36a1513e5b17cc9c32463a' # Fixes patch 3
         '7973116c2d8735bae92436356322679cb518820e2e7fea267e85bcc2bd8bc594f489b9b7396a8e811d4ef9e87ea3731e45b027cd7ede23565ef55f35f8d6cff1' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
         'd3ea62db068344d766abd61173c2a7e724fe8168386ab9bad9713643f0b990349ce9da13d8a1dcb4c187a6bd5a95f27c71f31ba96e928ff1c569a37d67d1bb2a' # MGLRU patch
         '0b9f99bdd1b493f9b33394fba180a45f9d32a6b63c96729af01c0453316eb75d11ece29c2286405324878a4e357795753a2c7521d118d9b03fc0f7f762af8861' # Upstream Zstd patch
