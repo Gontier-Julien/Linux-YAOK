@@ -62,7 +62,7 @@ Add this to the end of your `pacman.conf`:
 >⚠️The repo as resently moved to a new place, and will not be provided trougth GitHub anymore⚠️
 ```
 [linux-yaok]
-SigLevel = Optional TrustedOnly
+SigLevel = PackageOptional
 Server = https://linuxyaok.dedyn.io/
 ```
 
