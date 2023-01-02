@@ -1,5 +1,5 @@
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V57BNHC)
-
+> ⚠️The repo as resently moved to a new place check the [#repo](#repo) section⚠️
 # Linux-YAOK 🐧
 Yet Another Optimized Kernel
 
@@ -59,11 +59,11 @@ ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_manageme
 # Repo
 
 Add this to the end of your `pacman.conf`:
-
+>⚠️The repo as resently moved to a new place, and will not be provided trougth GitHub anymore⚠️
 ```
 [linux-yaok]
 SigLevel = Optional TrustedOnly
-Server = https://github.com/gontier-julien/linux-yaok/releases/latest/download
+Server = https://linuxyaok.dedyn.io/
 ```
 
 # DKMS
@@ -96,8 +96,9 @@ Subdirectories of glibc-hwcaps directories, in priority order:
 
 # TODO
 
-- [x] Switching the base architecture to x86-64-v2 (~late/the end of 2022)
-- [ ] Build server and official repo (partilly done)
+- [x] Switching the base architecture to x86-64-v2
+- [x] Build server and official repo
+- [ ] Signed packages
 - [ ] Add builds for Debian
 
 
