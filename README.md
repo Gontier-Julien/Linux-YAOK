@@ -44,7 +44,7 @@ vm.dirty_ratio = 10
 vm.dirty_background_ratio = 5
 net.ipv4.tcp_fastopen = 3
 net.ipv4.tcp_tw_reuse = 1
-net.core.default_qdisc = cake
+net.core.default_qdisc = fq
 net.ipv4.tcp_congestion_control = bbr
 ```
 This should improve performance further.
