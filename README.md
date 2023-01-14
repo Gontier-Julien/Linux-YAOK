@@ -11,10 +11,9 @@ Linux Yaok is a kernel with `Stability First` and Performance in mind.
 - x86-64-v2 as the base Kernel architecture
 - Dedicated Kernel for x86-64-v3 architectures
 - Build with -02 and latest LTS cycle for stability
-- PREEMPT enabled by default
+- PREEMPT & MGLRU enabled by default
 - Tweaked default CFS CPU Scheduler
 - No OC, timer frequency is set at 250HZ base
-- Latest & improved ZSTD patch-set
 - Follow some Upstream Kernel changes
 - Removed a lot of debug and logging options
 
@@ -29,7 +28,7 @@ With my current setup it not possible for me to compile each kernel every time a
 
 **But if you're on Arch Linux don't use the LTS kernel (probably a "I use Arch BTW" elite user)**
 
-All people who use Arch Linux, also want to have a kernel that is not always bleading edge and stable.
+All people who use Arch Linux, also want to have a kernel that is stable and not always bleading edge.
 
 I also recommend to take a small look at the [Wiki](https://github.com/Gontier-Julien/Linux-YAOK/wiki)
 

@@ -1,31 +1,33 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok
-pkgver=5.15.85
+pkgver=6.1.6
 pkgrel=1
 pkgdesc='Linux-lts YAOK, Yet Another Optimized Kernel'
 url='https://cdn.kernel.org/'
-arch=(x86_64 x86_64_v3)
+arch=(x86_64)
 license=(GPL2)
 makedepends=(bc libelf pahole cpio perl tar xz 
-             xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
+             xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick git
              clang llvm llvm-libs lld)
 options=('!strip')
 _srcname=linux-${pkgver}
-_frogpatch="https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/5.15"
-_patchsource="https://raw.githubusercontent.com/CachyOS/kernel-patches/master/5.15" # Temporary until next LTS and/or self made patch
+_patchsource="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/6.1"
+_frogpatch="https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.1"
 source=(
-  "https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz"
-  "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.15-5.16.patch"
+  "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
+  "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.17%2B.patch"
   "${_frogpatch}/0003-glitched-cfs-additions.patch"
   "${_frogpatch}/0002-clear-patches.patch"
-  "${_patchsource}/AMD/0001-amd-c3.patch"
-  "${_patchsource}/0001-intel-patches.patch"
-  "${_patchsource}/0001-lqx-patches.patch"
-  "${_patchsource}/0001-spectre-patches.patch"
-  "https://raw.githubusercontent.com/Frogging-Family/community-patches/master/linux517-tkg/lru_5.17.mypatch"
-  "${_patchsource}/0001-zstd-upstream-patches.patch"
-  "${_frogpatch}/0007-v5.15-futex_waitv.patch"
+  "${_patchsource}/fixes-miscellaneous-v23-sep/0005-elevator-remove-redundant-code-in-elv_unregister_que.patch"
+  "${_patchsource}/fixes-miscellaneous-v23-sep/0012-objtool-Optimize-elf_dirty_reloc_sym.patch"
+  "${_patchsource}/fixes-miscellaneous-v23-sep/0013-kbuild-revive-parallel-execution-for-.tmp_initcalls..patch"
+  "${_patchsource}/fixes-miscellaneous-v23-sep/0016-epoll-ep_autoremove_wake_function-should-use-list_de.patch"
+  "${_patchsource}/fixes-miscellaneous-v23-sep/0021-mm-remove-PageMovable-export.patch"
+  "${_patchsource}/fixes-miscellaneous-v23-sep/0025-kthread_worker-check-all-delayed-works-when-destroy-.patch"
+  "${_patchsource}/zen-patches-sep/0009-ZEN-mm-Disable-watermark-boosting-by-default.patch"
+  "${_patchsource}/zen-patches-sep/0010-ZEN-mm-Stop-kswapd-early-when-nothing-s-waiting-for-.patch"
+  "${_patchsource}/zen-patches-sep/0012-ZEN-mm-Don-t-hog-the-CPU-and-zone-lock-in-rmqueue_bu.patch"
   "config" # Kernel config
 )
 validpgpkeys=(
@@ -33,18 +35,20 @@ validpgpkeys=(
   '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
   'E27E5D8A3403A2EF66873BBCDEA66FF797772CDC' # Sasha Levin
 )
-b2sums=('481cea334dee4146d72704ecb88f654bd38ca62a5a28540f365a57f5cd522551c4b7f854c09380ec614098a9efa5dff4cef70c9cafe6277a410d3d2099eca1cc' # Linux 5.15.85
-        '2c63d377bbefbdda15f805bfb1ca24880a65d0c8760a27d2f7e354f551002cd165ddb16b827ce558bab0c042247b47eca4db263ba721353053706ba1819e7b99' # Graysky2 patch for x86-64-v2
-        '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
-        'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
-        '278869ec65025e3060dcb81f1a9019cf0f1ea610bf4ec6fd4913f6de09650d8acab57605f8fe2950880ea6fbf9dbdc9ad9b221056fea46905701145f4876a295' # AMD C3 patch
-        'dc7c45d57d50c4b019cb2fd5bf3d4ec019a7d3dd4a4e62bef324f75319d7bd9ed4c7faf96941d4f85c3504352b403fa5696c34878df08c62cbb17927648e0900' # Intel patch
-        'ac7cbdee62a8b5b685796cf5a60ba03c34515e4f2af859daf4d336d2bd7ed569b45fe8be09c1b5153830b3aa4a7cd7c71c81724c7d2c53fa91a01f322f5647c1' # MSR patch
-        '7973116c2d8735bae92436356322679cb518820e2e7fea267e85bcc2bd8bc594f489b9b7396a8e811d4ef9e87ea3731e45b027cd7ede23565ef55f35f8d6cff1' # Follow upstream patch [5.16](https://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git/commit/?h=for-next/seccomp&id=2f46993d83ff4abb310ef7b4beced56ba96f0d9d)
-        'd3ea62db068344d766abd61173c2a7e724fe8168386ab9bad9713643f0b990349ce9da13d8a1dcb4c187a6bd5a95f27c71f31ba96e928ff1c569a37d67d1bb2a' # MGLRU patch
-        '0b9f99bdd1b493f9b33394fba180a45f9d32a6b63c96729af01c0453316eb75d11ece29c2286405324878a4e357795753a2c7521d118d9b03fc0f7f762af8861' # Upstream Zstd patch
-        '23ee085c2a54ddcad781bc0e6da352f1299350e494b34f8833c729f69e596b4da73a5df47a88ad80109163b0553993498612f14ef5527400eed2cda379984c24' # Futex2 patch
-        '238d3ffab27d591ac5ccd50bf91d42780ca53052c9a6caab5d178aa2ea30db30fa39a0958295fb007264bc7f80ff260bbbe213ee1c9ebcf5578462022e108643') # Kernel config
+b2sums=('47fdcc432bd473b3948bc4b618caa329887026b86029dfad055a9d4dd5cccfdd86df48bed7dec7f9f1a037cf955e9c024f368600b5ee8bbb0a46e4620abbde10' # Linux 6.1.6
+      '508ff463d936e07e0c3ac2017da12bda52d3db5d98d45fe908f35c4d9fadb253cc9d5c17b8915ec600b5024fcecc2746a04d32096e7ebf691438d4ab8bd067a8' # Graysky2 patch for x86-64-v2
+      '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
+      'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
+      'b16fd9dfa7ce43092204f6bd841a66264c5146528f5d826bd069de64bd9394bb4a8526dc2647fd41bea720cd03f6a55aa0c1a06e90c522fb38c1e98b50a82225' # Fixes patch 1
+      'ad3f2f7fd36667e61aa9e7d5bced8ba168d6e71bf4b3204bd0855d7cdd19f4fac359d7b67638adb5eb9ec2523a9ed8d9c182df28d795942f21c1a2439e5ac1b5' # Fixes patch 2
+      '5dddb331bbef0d123a09fbee89740374a8d72c5495a0df1cccc2d993af2cfee3240c4b329928faceb0095c207eabf5f7cbaef611928b7064a49e0c5ee404a6c9' # Fixes patch 3
+      'c95592ca4b9b6806307c3828305f6f47e137463fd6f6780d309890c044c31fe21228407c5531138cc051b96483184eb5c8453b0ba5c9f7ae00509a5726f8d5c0' # Fixes patch 4
+      '036a21f5edb8a90abdc320a2e1157f89f3d954d61be022dc01a8f339095c991083df3619463a7cf7e6be8e531c765e7d4a638749defc8d64560dee83ffb0ae8f' # Fixes patch 5
+      '2b592fe1609d815a3cfb0cb361544a91d244baf12e08a7ba497050a2572973e513e6a7a4208825deb8d5806b4706ff482273cfbac14f345f0013c90a6b6a5f01' # Fixes patch 6
+      'c246ac7660d991d48648b07ff440295fdb7d66be4feb584541a35b5b07cb68fd9ffd28bbad8b7ef0ae98e315c6b83856cf5f22b1190afd7d15b2720eb3fc8708' # Zen fixes patch 1
+      'a75186b025528315b7757b0bceaf9d4903a337ae7a771d4620c6eb6d7d5fa5ebb2997056e76da408a7bbb3c9a1faffeb0fbe54dc74c6e74ae373b9b70169951e' # Zen fixes patch 2
+      '7970dc4764b39860436875b7c0a3120503f3b3d7d09f02e3b196178ccc6476b3d222b227e5127a1ffd5ed6cb20395352a3ed0392d5c31608b929b884de5a5744' # Zen fixes patch 3
+        '6b3eda8c9520b95952bcce4df8afa172f786505a4e9259ded2e761541413b51c28304dab5d4072bb2a4131d9abc9ac1033f75beab3817e905a9f42a661afe780') # Kernel config
 
 BUILD_FLAGS=(
   CC=clang CXX=clang++ LD=ld.lld
@@ -81,12 +85,12 @@ prepare() {
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
 
+  echo -e "\033[0;32mEnabling Frog TKG CFS patch..."
+  scripts/config --enable CONFIG_ZENIFY
+
   echo -e "\033[0;32mEnabling Graysky2 x86-64-v2..."
   scripts/config --disable CONFIG_GENERIC_CPU
   scripts/config --enable CONFIG_GENERIC_CPU2
-
-  echo -e "\033[0;32mEnabling Frog TKG CFS patch..."
-  scripts/config --enable CONFIG_ZENIFY
 
   echo -e "\033[0;32mEnabling LLVM FULL-LTO..."
   scripts/config --enable LTO_CLANG_FULL
@@ -103,24 +107,15 @@ prepare() {
   scripts/config --disable CONFIG_SECURITY_APPARMOR
   echo -e "\033[0;31mDisabling YAMA..."
   scripts/config --disable CONFIG_SECURITY_YAMA
-  echo -e "\033[0;31mSetting LSM accordingly..."
-  scripts/config --set-str CONFIG_LSM landlock,lockdown,integrity,bpf
+  echo -e "\033[0;31mSet correct LSM config..."
+  scripts/config --set-str CONFIG_LSM lockdown,integrity,bpf
 
-  echo -e "\033[0;32mEnabling Futex2 support..."
-  scripts/config --enable CONFIG_FUTEX2
+  echo -e "\033[0;31mDisabling SYSFB..."
+  scripts/config --disable CONFIG_SYSFB_SIMPLEFB
 
   echo -e "\033[0;31mDisabling TCP_CONG_CUBIC..."
   scripts/config --module CONFIG_TCP_CONG_CUBIC
   scripts/config --disable CONFIG_DEFAULT_CUBIC
-  echo -e "\033[0;31mDisabling TCP_CONG_RENO..."
-  scripts/config --module CONFIG_TCP_CONG_RENO
-  scripts/config --disable CONFIG_DEFAULT_RENO
-  echo -e "\033[0;32mEnabling TCP_CONG_BBR..."
-  scripts/config --enable CONFIG_TCP_CONG_BBR
-  scripts/config --enable CONFIG_DEFAULT_BBR
-  scripts/config --set-str CONFIG_DEFAULT_TCP_CONG bbr
-  echo -e "\033[0;32mSet CAKE as the default queuing..."
-  scripts/config --set-str DEFAULT_NET_SCH cake
 
   echo -e "\033[0;32mSetting performance governor..."
   scripts/config --disable CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL
@@ -130,9 +125,6 @@ prepare() {
   scripts/config --disable CONFIG_CPU_FREQ_GOV_CONSERVATIVE
   scripts/config --disable CONFIG_CPU_FREQ_GOV_USERSPACE
   scripts/config --disable CONFIG_CPU_FREQ_GOV_SCHEDUTIL
-
-  echo -e "\033[0;31mDisabling Core Scheduling for SMT..."
-  scripts/config --disable CONFIG_SCHED_CORE
 
   echo -e "\033[0;32mEnabling PREEMPT..."
   scripts/config --disable CONFIG_PREEMPT_NONE
@@ -144,9 +136,8 @@ prepare() {
 
   echo -e "\033[0;31mDisabling some additional debuging..."
   scripts/config --disable CONFIG_DEBUG_BUGVERBOSE
-
-  echo -e "\033[0;31mRemove CleanCache..." #https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=612de5464f4077e4918eed99f4b31cfbd0781c69
-  scripts/config --disable CONFIG_CLEANCACHE
+  scripts/config --disable CONFIG_HAVE_DEBUG_KMEMLEAK
+  scripts/config --disable SLUB_DEBUG
 }
 
 build() {
@@ -198,9 +189,6 @@ _package-headers() {
   # required when STACK_VALIDATION is enabled
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
 
-  # required when DEBUG_INFO_BTF_MODULES is enabled
-  #install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
-
   echo "Installing headers..."
   cp -t "$builddir" -a include
   cp -t "$builddir/arch/x86" -a arch/x86/include
@@ -243,7 +231,7 @@ _package-headers() {
   echo "Stripping build tools..."
   local file
   while read -rd '' file; do
-    case "$(file -bi "$file")" in
+    case "$(file -Sbi "$file")" in
       application/x-sharedlib\;*)      # Libraries (.so)
         strip -v $STRIP_SHARED "$file" ;;
       application/x-archive\;*)        # Libraries (.a)
@@ -263,7 +251,7 @@ _package-headers() {
   ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 }
 
-pkgname=("$pkgbase" "$pkgbase-headers")
+pkgname=("$pkgbase" "$pkgbase-headers" )
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     $(declare -f "_package${_p#$pkgbase}")
