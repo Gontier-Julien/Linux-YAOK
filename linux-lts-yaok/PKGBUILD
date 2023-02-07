@@ -23,7 +23,6 @@ source=(
   "${_patchsource}/fixes-miscellaneous-v38-sep/0012-objtool-Optimize-elf_dirty_reloc_sym.patch"
   "${_patchsource}/fixes-miscellaneous-v38-sep/0013-kbuild-revive-parallel-execution-for-.tmp_initcalls..patch"
   "${_patchsource}/fixes-miscellaneous-v38-sep/0016-epoll-ep_autoremove_wake_function-should-use-list_de.patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0018-Initialize-ata-before-graphics.patch"
   "${_patchsource}/fixes-miscellaneous-v38-sep/0019-mm-remove-PageMovable-export.patch"
   "${_patchsource}/fixes-miscellaneous-v38-sep/0023-kthread_worker-check-all-delayed-works-when-destroy-.patch"
   "${_patchsource}/zen-patches-sep/0009-ZEN-mm-Disable-watermark-boosting-by-default.patch"
@@ -44,9 +43,8 @@ b2sums=('926c499eb3260e4358b8112785e7be74062aca54b4d5c21d2729efc81329ae168c461d3
       '734ddf425b563a98786d99d61bd01b7256aa74b4643fb28b91abd5aac91a9e167edafd53b490cace132859edce890fc0df48cccae3e4cfcef1b07962063727d2' # Fixes patch 2
       'a003cdcf266fac3b9843a6636c816b53618e6433fd09de18cd4f4b5abcc9bfb384a9c45f977e197107f02c937ea586fee689c9bb562e204ca263252f527a051d' # Fixes patch 3
       '7c8d003129fa54c60b5d3350d86802540fed2b57653ae0a44591acf38fa11460e1bd7b4c38147c20850f5416a26cf46eb535326e90077b89517c0e4645c53aa0' # Fixes patch 4
-      'b6e0c18902e817927f2a40a8f28eb7985bedabdc3992f4c7f7e7de7358643a91f2f66a866ee90078ee46990c0b862514fb422ab3456d556a270cfc242bd8cd4c' # Fixes patch 5
-      '0788bcdcbab272771d4be955380a511b500224e5f8e5cb62e2906c4d99cf4db465afc85f63850dba048bd9bb770fdccbc5cbb0ce87c8f5d16abfb34887045994' # Fixes patch 6
-      'ee2d22c10cd16765e15b0664fee1f3df8031dd8cd8d416d81deeb9c859766579376fb0893d756f94730f900d9d9e9ea5193274ab8d62f35f5c5a78a892ca39a6' # Fixes patch 7
+      '0788bcdcbab272771d4be955380a511b500224e5f8e5cb62e2906c4d99cf4db465afc85f63850dba048bd9bb770fdccbc5cbb0ce87c8f5d16abfb34887045994' # Fixes patch 5
+      'ee2d22c10cd16765e15b0664fee1f3df8031dd8cd8d416d81deeb9c859766579376fb0893d756f94730f900d9d9e9ea5193274ab8d62f35f5c5a78a892ca39a6' # Fixes patch 6
       'c246ac7660d991d48648b07ff440295fdb7d66be4feb584541a35b5b07cb68fd9ffd28bbad8b7ef0ae98e315c6b83856cf5f22b1190afd7d15b2720eb3fc8708' # Zen fixes patch 1
       'a75186b025528315b7757b0bceaf9d4903a337ae7a771d4620c6eb6d7d5fa5ebb2997056e76da408a7bbb3c9a1faffeb0fbe54dc74c6e74ae373b9b70169951e' # Zen fixes patch 2
       '7970dc4764b39860436875b7c0a3120503f3b3d7d09f02e3b196178ccc6476b3d222b227e5127a1ffd5ed6cb20395352a3ed0392d5c31608b929b884de5a5744' # Zen fixes patch 3
