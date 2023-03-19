@@ -1,7 +1,7 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=6.1.10
+pkgver=6.1.20
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://cdn.kernel.org/'
@@ -19,12 +19,13 @@ source=(
   "https://raw.githubusercontent.com/graysky2/kernel_compiler_patch/master/more-uarches-for-kernel-5.17%2B.patch"
   "${_frogpatch}/0003-glitched-cfs-additions.patch"
   "${_frogpatch}/0002-clear-patches.patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0005-elevator-remove-redundant-code-in-elv_unregister_que.patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0012-objtool-Optimize-elf_dirty_reloc_sym.patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0013-kbuild-revive-parallel-execution-for-.tmp_initcalls..patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0016-epoll-ep_autoremove_wake_function-should-use-list_de.patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0019-mm-remove-PageMovable-export.patch"
-  "${_patchsource}/fixes-miscellaneous-v38-sep/0023-kthread_worker-check-all-delayed-works-when-destroy-.patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0005-elevator-remove-redundant-code-in-elv_unregister_que.patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0012-objtool-Optimize-elf_dirty_reloc_sym.patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0013-kbuild-revive-parallel-execution-for-.tmp_initcalls..patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0016-epoll-ep_autoremove_wake_function-should-use-list_de.patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0019-mm-remove-PageMovable-export.patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0023-kthread_worker-check-all-delayed-works-when-destroy-.patch"
+  "${_patchsource}/fixes-miscellaneous-v43-sep/0037-lib-string-Use-strchr-in-strpbrk.patch"
   "${_patchsource}/zen-patches-sep/0009-ZEN-mm-Disable-watermark-boosting-by-default.patch"
   "${_patchsource}/zen-patches-sep/0010-ZEN-mm-Stop-kswapd-early-when-nothing-s-waiting-for-.patch"
   "${_patchsource}/zen-patches-sep/0012-ZEN-mm-Don-t-hog-the-CPU-and-zone-lock-in-rmqueue_bu.patch"
@@ -35,16 +36,17 @@ validpgpkeys=(
   '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
   'E27E5D8A3403A2EF66873BBCDEA66FF797772CDC' # Sasha Levin
 )
-b2sums=('926c499eb3260e4358b8112785e7be74062aca54b4d5c21d2729efc81329ae168c461d32f54061d8db05a12cac45b63ca97b74084a8af8138f547c3a2fc2d947' # Linux 6.1.10
+b2sums=('9ea5ced4b7d42537bafce8c1cc803896ccecf93971ecaff40a3606b850ea59a160284709bf10c2d1dea3c2d1a04fc81de1bad23f709542d70a24bd08604753af' # Linux 6.1.20
       '508ff463d936e07e0c3ac2017da12bda52d3db5d98d45fe908f35c4d9fadb253cc9d5c17b8915ec600b5024fcecc2746a04d32096e7ebf691438d4ab8bd067a8' # Graysky2 patch for x86-64-v3
       '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
       'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
-      'e2f6d78b17e509b0307a7e7435a00bbc4a06664a6a93cf52275453c6f6c1e76d5fe7f86f2c05431238847821fc61685451bce918b07f02fd25981b72ec08b8e1' # Fixes patch 1
-      '734ddf425b563a98786d99d61bd01b7256aa74b4643fb28b91abd5aac91a9e167edafd53b490cace132859edce890fc0df48cccae3e4cfcef1b07962063727d2' # Fixes patch 2
-      'a003cdcf266fac3b9843a6636c816b53618e6433fd09de18cd4f4b5abcc9bfb384a9c45f977e197107f02c937ea586fee689c9bb562e204ca263252f527a051d' # Fixes patch 3
-      '7c8d003129fa54c60b5d3350d86802540fed2b57653ae0a44591acf38fa11460e1bd7b4c38147c20850f5416a26cf46eb535326e90077b89517c0e4645c53aa0' # Fixes patch 4
-      '0788bcdcbab272771d4be955380a511b500224e5f8e5cb62e2906c4d99cf4db465afc85f63850dba048bd9bb770fdccbc5cbb0ce87c8f5d16abfb34887045994' # Fixes patch 5
-      'ee2d22c10cd16765e15b0664fee1f3df8031dd8cd8d416d81deeb9c859766579376fb0893d756f94730f900d9d9e9ea5193274ab8d62f35f5c5a78a892ca39a6' # Fixes patch 6
+      '5606494edff42a641aca81b38fab1da1f5f4bed1754a654d0679ea23c7f1d86afe9f10e0452861a8ed545c2135d20a7690f69d2067a60a8ab3b2aa3c4beccec4' # Fixes patch 1
+      '3828f6da0a0863ef3b46c51360fc52071143e9cf902d5c5b1ff9c4e4792ce331aa1617fb654999fcb99d3a6b5e6ab0fba91a694c352a5a1b2b0ab68e4948c1b7' # Fixes patch 2
+      'fec15aaba839c764d5b445b62d915d2e745f1c08f4a46fc0732a0035f9585878b45473e5a683440eb3fa773d6386a2092ecf6cd8c9b1339091f7889c4b43a511' # Fixes patch 3
+      '0cc563a3093c2ff73fa58f3542fca6c8a8767700249aaa46a91685055971f9b6befc71afbc614cc55499453a22fcfea5e076ed56a89245443a2a5c0c2d531c6c' # Fixes patch 4
+      '1b59e717d5904daf243d1f0646f90c86dfb29a2e10f92635ddd29f25b044440c6402ca0e0ceeab592d803586e53773bd270221c99ea3a66fc32d3c9683e89fb7' # Fixes patch 5
+      '582e5ad6ed2d27ae31e9142df61deae7d1f8c5c03a6981302f048071bfd34ce45ab5ddf7d27e4c7f820e5b99f407354c8f1358fb66d57b8999078266feabe4f1' # Fixes patch 6
+      '0f274e477ac18fa7ca0b1e1c1e6856a4646c255fcf61a896dfecba7990458ca774162fe8df75ec4f5ae04c9ee6c50a166ef29dc0b5e344a71c3c362da82a9d24' # Fixes patch 7
       'c246ac7660d991d48648b07ff440295fdb7d66be4feb584541a35b5b07cb68fd9ffd28bbad8b7ef0ae98e315c6b83856cf5f22b1190afd7d15b2720eb3fc8708' # Zen fixes patch 1
       'a75186b025528315b7757b0bceaf9d4903a337ae7a771d4620c6eb6d7d5fa5ebb2997056e76da408a7bbb3c9a1faffeb0fbe54dc74c6e74ae373b9b70169951e' # Zen fixes patch 2
       '7970dc4764b39860436875b7c0a3120503f3b3d7d09f02e3b196178ccc6476b3d222b227e5127a1ffd5ed6cb20395352a3ed0392d5c31608b929b884de5a5744' # Zen fixes patch 3
