@@ -1,14 +1,14 @@
 # Maintainer: gontier-julien <gontierjulien68@gmail.com>
 
 pkgbase=linux-lts-yaok-v3
-pkgver=6.1.20
+pkgver=6.1.25
 pkgrel=1
 pkgdesc='Linux-lts YAOK V3, Yet Another Optimized Kernel'
 url='https://cdn.kernel.org/'
 arch=(x86_64 x86_64_v3)
 license=(GPL2)
 makedepends=(bc libelf pahole cpio perl tar xz 
-             xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick git
+             xmlto python-sphinx graphviz imagemagick git
              clang llvm llvm-libs lld)
 options=('!strip')
 _srcname=linux-${pkgver}
@@ -36,7 +36,7 @@ validpgpkeys=(
   '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
   'E27E5D8A3403A2EF66873BBCDEA66FF797772CDC' # Sasha Levin
 )
-b2sums=('9ea5ced4b7d42537bafce8c1cc803896ccecf93971ecaff40a3606b850ea59a160284709bf10c2d1dea3c2d1a04fc81de1bad23f709542d70a24bd08604753af' # Linux 6.1.20
+b2sums=('a8eeec298534e825935d94d1bcdbd6224955f5a6715592a27bea48a360582b3c5f640b277a3f076948d074bb6097814a58dbee8ae9fa8b217588935d6c799728' # Linux 6.1.25
       '508ff463d936e07e0c3ac2017da12bda52d3db5d98d45fe908f35c4d9fadb253cc9d5c17b8915ec600b5024fcecc2746a04d32096e7ebf691438d4ab8bd067a8' # Graysky2 patch for x86-64-v3
       '4d71339dc96627043e843fa0a627fbf7ee7b25bf5388cf95cc98cf5a04cfd12778ad194ab4a12233d499bf6683189fe285514a240e88807eefec0718e014c20a' # Frog TKG CFS patch
       'c270f1ad7b3898ea499f0a3dad93708f3546f5be66e7f912b192093d734477e8f0210f318d28be432f0ffff7cf10ea7d849234b3164ce62aa4cdd7fe426d4b5c' # Clear-Linux patch
