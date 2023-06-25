@@ -1,5 +1,5 @@
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V57BNHC)
-> ⚠️The repo as resently moved to a new place check the [#repo](#repo) section⚠️
+<!--[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V57BNHC)-->
+> ⚠️This project is now read-only and deprecated⚠️
 # Linux-YAOK 🐧
 Yet Another Optimized Kernel
 
